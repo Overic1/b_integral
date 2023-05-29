@@ -1,0 +1,44 @@
+{# {% extends 'pages/datable.html.twig' %} #}
+{% extends '@!EasyAdmin/crud/index.html.twig' %}
+
+{# Ajoutez votre contenu personnalisé ici #}
+
+{# {% block content_title %}Liste des entreprises{% endblock %} #}
+{% block content %}
+
+	{% for message in app.flashes('success') %}
+                <div class=" alert alert-success mt-4">
+                    {{ message }}
+                </div>
+    {% endfor %}
+  <main class="content pt-4 overflow-x-hidden">
+				<div class="container-fluid p-0">
+
+					<div class="mb-3">
+						<h1 class="h3 d-inline align-middle">B - Integral</h1><a class="badge bg-primary ms-2" href=""
+							target="_blank">Pro Component <i class="fas fa-fw fa-external-link-alt"></i></a>
+					</div>
+
+					<div class="row">
+						<div class="col-12">
+							<div class="card">
+								<div class="card-header">
+									<h5 class="card-title">DataTables with Column Search by Text Inputs</h5>
+									<h6 class="card-subtitle text-muted">The searching functionality provided by DataTables is useful for quickly search through
+										the information in the table. See official documentation <a href="#" target="_blank" rel="noopener noreferrer nofollow">here</a>.</h6>
+								</div>
+								<div class="card-body">
+									<table id="datatables-column-search-text-inputs" class="table table-striped" style="width:100%">
+										<tbody>
+  											{{ parent() }}
+										</tbody>
+
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+           {# <script src="{{asset('assets/dist/js/app.js')}}"></script> #}
+{% endblock %}

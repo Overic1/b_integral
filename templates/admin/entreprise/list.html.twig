@@ -1,0 +1,149 @@
+{% extends '@EasyAdmin/layout.html.twig' %}
+
+{% block content %}
+
+
+	{% for message in app.flashes('success') %}
+                <div class=" alert alert-success mt-4">
+                    {{ message }}
+                </div>
+    {% endfor %}
+ <main class="content pt-4">
+    <div class="container-fluid p-0">
+
+        <div class="mb-3">
+            <h1 class="h3 d-inline align-middle">B - Integral</h1><a class="badge bg-primary ms-2" href=""
+                target="_blank">Pro Component <i class="fas fa-fw fa-external-link-alt"></i></a>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">DataTables with Column Search by Text Inputs</h5>
+                        <h6 class="card-subtitle text-muted">The searching functionality provided by DataTables is useful for quickly search through
+                            the information in the table. See official documentation <a href="#" target="_blank" rel="noopener noreferrer nofollow">here</a>.</h6>
+                    </div>
+                    <div class="card-body">
+									
+                    <div class="row">
+                        <div class="col-md-12">
+                        <h2>Liste des entreprises</h2>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nom</th>
+                                        <th>Installation</th>
+                                        <th>Base_url</th>
+                                        <th>Api Key</th>
+                                        <th>Action</th>
+                                        <!-- Autres colonnes de l'entreprise -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for entreprise in entreprises %}
+                                        <tr>
+                                            <td>{{ entreprise.id }}</td>
+                                            <td>{{ entreprise.nom }}</td>
+                                                
+                                            {% if entreprise.installation is not empty %}
+
+                                                <td>
+                                                    {{ entreprise.installation.sousdomaine|replace({' ':''})|lower ~ '.' ~ 
+                                                    entreprise.installation.domaine|replace({' ':''})|lower ~ '/htdocs/' ~ 
+                                                    entreprise.nom|replace({' ':''})|lower }}
+                                                </td>
+                                                <td>
+                                                    {{'https://' ~ entreprise.installation.sousdomaine|replace({' ':''})|lower ~ '.' ~ 
+                                                    entreprise.installation.domaine|replace({' ':''})|lower ~ '/' ~
+                                                    entreprise.nom|replace({' ':''})|lower ~ '/htdocs/api/'
+                                                    }}
+                                                </td>
+                                                <td>
+                                                    -
+                                                </td>
+                                                <td><button disabled type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-entreprise-id="{{ entreprise.id }}">Installée</button></td>
+                                            {% else %}
+                                                 <td>
+                                                    -
+                                                </td>
+                                                <td>
+                                                   -
+                                                </td>
+                                                
+                                                <td>
+                                                    -
+                                                </td>
+                                                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-entreprise-id="{{ entreprise.id }}">Faire installation</button></td>
+                                                <!-- Autres colonnes de l'entreprise -->
+                                            {% endif %}
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+        <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Liste des installations</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Action</th>
+                        <!-- Autres colonnes de l'entreprise -->
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for installation in installations %}
+                        <tr>
+                            <td>{{ installation.id }}</td>
+                            <td>{{ installation.nom }}</td>
+                            {# entrepriseId: entrepriseId, #}
+                            <td><a href="{{ path('entreprise.assoc', { installationId: installation.id,entrepriseId: '__entrepriseId__' }) }}" class="btn btn-primary">Associer</a></td>
+
+                            <!-- Autres colonnes de l'entreprise -->
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+    </div>
+
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+            $(document).ready(function() {
+                $('#exampleModal').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget); // Bouton qui a déclenché l'ouverture du modal
+                var entrepriseId = button.data('entreprise-id'); // Récupère la valeur de data-entreprise-id
+                console.log(entrepriseId)
+
+                // Mettre à jour le lien d'association dans le modal avec l'entrepriseId
+            $(this).find('a').attr('href', function() {
+                return $(this).attr('href').replace('__entrepriseId__', entrepriseId);
+            });
+        });
+    });
+
+    </script>
+
+
+{% endblock %}

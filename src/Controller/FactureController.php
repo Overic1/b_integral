@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Entreprise;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
-use Symfony\Component\Intl\DateFormatter\IntlDateFormatter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use GuzzleHttp\Client;
+
 
 class FactureController extends AbstractController
 {
@@ -43,6 +45,7 @@ class FactureController extends AbstractController
         if ($statusCode === 200) {
             $factData = $responsefact->toArray();
             
+            
             foreach($factData as $factData){
                 $idfact = $factData['id'];
                 $datefact = $factData['date'];
@@ -64,13 +67,6 @@ class FactureController extends AbstractController
 
                 $datefact = $dateOrigine->format('l d F Y');
 
-                // echo $datefact;
-
-
-                // $dateOrigine = new \DateTime();
-                // $dateOrigine->setTimestamp($datefact); // Remplacez $timestamp par la valeur de votre date en secondes
-                // $formatter = new IntlDateFormatter('fr', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
-                // $datefact = $formatter->format($dateOrigine);
 
                 $total_ht = number_format($total_ht, 2, ',', ' ');
                 $total_tva = number_format($total_tva, 2, ',', ' ');
@@ -96,17 +92,88 @@ class FactureController extends AbstractController
                     'normalisation' => $normalisation
                 ];
             }
-           
-
-            return $this->render('pages/facture/list.html.twig', [
-                'data' => $data
-            ]);
-        }else {
-            return $this->render('pages/facture/list.html.twig', [
-                'jsonCount' => 'pas de données',
-                'jsonData' => 'pas de data'
-                
-            ]);
         }
+
+        return $this->render('pages/facture/list.html.twig', [
+            'data' => $data
+        ]);
+    }
+
+
+    #[Route('/facture/new', name: 'facture.new', methods: ['GET','POST'])]
+    public function create(Request $request, HttpClientInterface $httpClient): Response
+    {
+
+        // Envoyer la requête POST à l'API pour créer l
+        $user = $this->security->getUser();
+        $apiKey = '';
+        $url = '';
+
+        if ($user instanceof Entreprise) {
+            $apiKey = $user->getApiKey();
+            $url = $user->getBaseUrl();
+        }
+
+        // // Récupérer les données fournies par l
+        $total_ht = $request->request->get('total_ht');
+        $total_tva = $request->request->get('total_tva');
+        $total_ttc = $request->request->get('total_ttc');
+        // $paye = $request->request->get('paye');
+        $socid = $request->request->get('socid');
+        // Construire le tableau des données à envoyer à l'API
+        $data = [
+            'socid' => $socid,
+            'total_ht' => $total_ht,
+            'total_tva' => $total_tva,
+            'total_ttc' => $total_ttc,
+            // 'paye' => $paye,
+            // 'normalisation' => $normalisation
+        ];
+        // dd($data);
+
+        $response = $httpClient->request('POST', $url . 'index.php/invoices' . '?DOLAPIKEY=' . $apiKey, [
+            'json' => $data
+        ]);
+
+       // $clientResponse = $httpClient->request('GET', $url . 'index.php/thirdparties?DOLAPIKEY=' . $apiKey);
+        // $clientResponse = $httpClient->request('GET', $url . 'index.php/thirdparties' . '?DOLAPIKEY=' . $apiKey);
+        
+        
+        // $clientData = $clientResponse->toArray();
+        //     // dd($clientData);
+        // for ($i = 0; $i < count($clientData); $i++) {
+        //     $name = $clientData[$i]['name'];
+        //     $id = $clientData[$i]['socid'];
+            
+        //     $clients = [
+        //         'id' => $id,
+        //         'name' => $name
+        //     ];
+        // } 
+        // $client = new \GuzzleHttp\Client();
+        // $response = $client->post($url. 'index.php/invoices?DOLAPIKEY='. $apiKey, [
+        //     'json' => $data
+        // ]);
+        
+
+        $statusCode = $response->getStatusCode();
+
+        // Traiter la réponse de l'API
+        if ($statusCode === 200) {
+            // créé avec succès
+            $this->addFlash(
+                'success',
+                'L\'enregistrement a été éffectué avec succès !'
+            );
+            return $this->redirectToRoute('facture.list');
+        }
+
+        $this->addFlash(
+            'error',
+            'L\'enregistrement n\'a pas aboutit !'
+        );  
+        return $this->render('pages/facture/new.html.twig',[
+            // 'clients' => $clients   
+        ]);
     }
 }

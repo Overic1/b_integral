@@ -92,39 +92,39 @@
 
         <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Liste des installations</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nom</th>
-                        <th>Action</th>
-                        <!-- Autres colonnes de l'entreprise -->
-                    </tr>
-                </thead>
-                <tbody>
-
-                    {% for installation in installations %}
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Liste des installations</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <thead>
                         <tr>
-                            <td>{{ installation.id }}</td>
-                            <td>{{ installation.nom }}</td>
-                            {# entrepriseId: entrepriseId, #}
-                            <td><a href="{{ path('entreprise.assoc', { installationId: installation.id,entrepriseId: '__entrepriseId__' }) }}" class="btn btn-primary">Associer</a></td>
-
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Action</th>
                             <!-- Autres colonnes de l'entreprise -->
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+
+                        {% for installation in installations %}
+                            <tr>
+                                <td>{{ installation.id }}</td>
+                                <td>{{ installation.nom }}</td>
+                                {# entrepriseId: entrepriseId, #}
+                                <td><a href="{{ path('entreprise.assoc', { installationId: installation.id,entrepriseId: '__entrepriseId__' }) }}" class="btn btn-primary">Associer</a></td>
+
+                                <!-- Autres colonnes de l'entreprise -->
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            </div>
         </div>
-        </div>
-    </div>
     </div>
 
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

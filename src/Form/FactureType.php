@@ -11,8 +11,10 @@ use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class ProduitType extends AbstractType
+
+class FactureType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -33,7 +35,7 @@ class ProduitType extends AbstractType
                 ]
             ])
 
-            ->add('description', TextType::class, [
+            ->add('description', TextareaType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     'minlength' => '2',
@@ -91,8 +93,8 @@ class ProduitType extends AbstractType
 
             ->add('status_buy', ChoiceType::class, [
                 'choices'  => [
-                'hors achat' => 0,
-                'en achat' => 1,
+                    'hors achat' => 0,
+                    'en achat' => 1,
                 ],
                 'attr' => [
                     'class' => 'form-select',
@@ -192,7 +194,7 @@ class ProduitType extends AbstractType
                 'attr' => [
                     'class' => 'btn btn-primary w-100'
                 ],
-                'label' => 'Enregistrer un produit'
+                'label' => 'Enregistrer un produuit'
             ])
         ;
     }

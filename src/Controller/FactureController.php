@@ -2,14 +2,15 @@
 
 namespace App\Controller;
 
+use App\Form\FactureType;
 use App\Entity\Entreprise;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
+use GuzzleHttp\Exception\RequestException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use GuzzleHttp\Client;
 
 
 class FactureController extends AbstractController
@@ -100,80 +101,81 @@ class FactureController extends AbstractController
     }
 
 
-    #[Route('/facture/new', name: 'facture.new', methods: ['GET','POST'])]
+    #[Route('/facture/new', name: 'facture.new', methods: ['GET', 'POST'])]
     public function create(Request $request, HttpClientInterface $httpClient): Response
     {
+        // Créer le formulaire et l'associer à la requête
+        $form = $this->createForm(FactureType::class);
+        $form->handleRequest($request);
 
-        // Envoyer la requête POST à l'API pour créer l
-        $user = $this->security->getUser();
-        $apiKey = '';
-        $url = '';
+        $codeEnseigne = "RXUX";
+        $randomNumber = rand(100000, 999999);
+        $ref = "1" . $codeEnseigne . "-" . $randomNumber;
 
-        if ($user instanceof Entreprise) {
-            $apiKey = $user->getApiKey();
-            $url = $user->getBaseUrl();
+        // Vérifier si le formulaire a été soumis et est valide
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Récupérer les données du formulaire
+            $formData = $form->getData();
+
+            // Construire le tableau des données à envoyer à l'API
+            $produitData = [
+                "label" => $formData['label'],
+                "description" => $formData['description'],
+                "type" => "0",
+                "barcode" => $formData['barcode'],
+                "ref" => $ref,
+                "price" => $formData['price'],
+                "price_ttc" => $formData['price_ttc'],
+                "status_buy" => $formData['status_buy'],
+                "status" => $formData['status'],
+                "tva_tx" => $formData['tva_tx'],
+                "array_options" => [
+                    "options_taxgroup" => $formData['options_taxgroup'],
+                    "options_taxspecific" => $formData['options_taxspecific'],
+                    "options_qty" => $formData['options_qty'],
+                    // "options_categories" => "id_categorie",
+                    // "options_url_image" => "valeur de img"
+                ]
+            ];
+            // dd($produitData);
+            try {
+                // Envoyer la requête POST à l'API pour créer le facture
+                $user = $this->security->getUser();
+                $apiKey = '';
+                $url = '';
+
+                if ($user instanceof Entreprise) {
+                    $apiKey = $user->getApiKey();
+                    $url = $user->getBaseUrl();
+                }
+
+                $response = $httpClient->request('POST', $url . 'index.php/invoices' . '?DOLAPIKEY=' . $apiKey, [
+                    'json' => $produitData
+                ]);
+
+                $statusCode = $response->getStatusCode();
+
+                // Traiter la réponse de l'API
+                if ($statusCode === 200) {
+                    // Produit créé avec succès
+                    $this->addFlash(
+                        'success',
+                        'La facture a été effectué avec succès !'
+                    );
+                    return $this->redirectToRoute('facture.list');
+                }
+            } catch (RequestException $e) {
+                // Gérer les erreurs de requête HTTP
+                $errorMessage = 'Une erreur est survenue lors de la communication avec l\'API : ';
+                $this->addFlash(
+                    'error',
+                    $errorMessage
+                );
+                // return $this->redirectToRoute('facture.new');
+            }
         }
-
-        // // Récupérer les données fournies par l
-        $total_ht = $request->request->get('total_ht');
-        $total_tva = $request->request->get('total_tva');
-        $total_ttc = $request->request->get('total_ttc');
-        // $paye = $request->request->get('paye');
-        $socid = $request->request->get('socid');
-        // Construire le tableau des données à envoyer à l'API
-        $data = [
-            'socid' => $socid,
-            'total_ht' => $total_ht,
-            'total_tva' => $total_tva,
-            'total_ttc' => $total_ttc,
-            // 'paye' => $paye,
-            // 'normalisation' => $normalisation
-        ];
-        // dd($data);
-
-        $response = $httpClient->request('POST', $url . 'index.php/invoices' . '?DOLAPIKEY=' . $apiKey, [
-            'json' => $data
-        ]);
-
-       // $clientResponse = $httpClient->request('GET', $url . 'index.php/thirdparties?DOLAPIKEY=' . $apiKey);
-        // $clientResponse = $httpClient->request('GET', $url . 'index.php/thirdparties' . '?DOLAPIKEY=' . $apiKey);
-        
-        
-        // $clientData = $clientResponse->toArray();
-        //     // dd($clientData);
-        // for ($i = 0; $i < count($clientData); $i++) {
-        //     $name = $clientData[$i]['name'];
-        //     $id = $clientData[$i]['socid'];
-            
-        //     $clients = [
-        //         'id' => $id,
-        //         'name' => $name
-        //     ];
-        // } 
-        // $client = new \GuzzleHttp\Client();
-        // $response = $client->post($url. 'index.php/invoices?DOLAPIKEY='. $apiKey, [
-        //     'json' => $data
-        // ]);
-        
-
-        $statusCode = $response->getStatusCode();
-
-        // Traiter la réponse de l'API
-        if ($statusCode === 200) {
-            // créé avec succès
-            $this->addFlash(
-                'success',
-                'L\'enregistrement a été éffectué avec succès !'
-            );
-            return $this->redirectToRoute('facture.list');
-        }
-
-        $this->addFlash(
-            'error',
-            'L\'enregistrement n\'a pas aboutit !'
-        );  
-        return $this->render('pages/facture/new.html.twig',[
-            // 'clients' => $clients   
+        return $this->render('pages/facture/new.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }

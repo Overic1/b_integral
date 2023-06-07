@@ -35,6 +35,7 @@ class EntrepriseCrudController extends AbstractCrudController
         // return [
             yield IdField::new('id')->hideOnForm();  // Masquer sur le formulaire d'édition
             yield TextField::new('nom')->setColumns(6);
+            // yield EmailField::new('codeEntreprise')->setColumns(6);
             yield EmailField::new('email')->setColumns(6);
             yield TextField::new('password')
             ->setFormType(RepeatedType::class)
@@ -54,15 +55,15 @@ class EntrepriseCrudController extends AbstractCrudController
                     ),
                         ],
             ])->hideOnIndex();
-            yield UrlField::new('base_url')->setRequired(false)->setColumns(6);
-            yield TextField::new('api_key')->setRequired(false)->setColumns(6);
-            yield ImageField::new('logo')->setBasePath('uploads/')->setColumns(6)
+            yield UrlField::new('base_url')->setRequired(false)->setColumns(3);
+            yield TextField::new('api_key')->setRequired(false)->setColumns(3);
+            yield ImageField::new('logo')->setBasePath('uploads/')->setColumns(3)
             ->setUploadDir('public/uploads/')
             ->setRequired(false);
-            yield TelephoneField::new('num_tel')->setRequired(false)->setColumns(6);
-            yield IntegerField::new('num_ifu')->setRequired(false)->setColumns(6);
-            yield IntegerField::new('num_nim')->setRequired(false)->setColumns(6);
-            // yield AssociationField::new('installation')->setColumns(6)
+            yield TelephoneField::new('num_tel')->setRequired(false)->setColumns(3);
+            yield IntegerField::new('num_ifu')->setRequired(false)->setColumns(3);
+            yield IntegerField::new('num_nim')->setRequired(false)->setColumns(3);
+            // yield AssociationField::new('installation')->setColumns(3)
             //     ->setRequired(false)
             //     ->setFormTypeOptions([
             //         'query_builder'=>function(InstallationRepository $installation)
@@ -72,9 +73,9 @@ class EntrepriseCrudController extends AbstractCrudController
             //         }
             //     ]);
 
-            // yield TextField::new('nomDeLaBase')->hideOnForm()->setColumns(6);
-            // yield TextField::new('user')->hideOnForm()->setColumns(6);
-            // yield TextField::new('passBase')->hideOnForm()->setColumns(6);
+            // yield TextField::new('nomDeLaBase')->hideOnForm()->setColumns(3);
+            // yield TextField::new('user')->hideOnForm()->setColumns(3);
+            // yield TextField::new('passBase')->hideOnForm()->setColumns(3);
             
 
         // ];
@@ -88,6 +89,7 @@ class EntrepriseCrudController extends AbstractCrudController
         $entityInstance->setNomDeLaBase();
         $entityInstance->setPassBase();
         $entityInstance->setUser();
+        $entityInstance->setCodeEntreprise();
 
 
         $pass = $entityInstance->getPassword();
@@ -114,12 +116,7 @@ class EntrepriseCrudController extends AbstractCrudController
         ]);
     }
 
-    public function __construct()
-    {
-        // $this->setNomDeLaBase();
-        // $entityInstance->createdb($dbName);
-    }
+
+   
 
 }
-
-// $entityInstance->createdb($dbName);

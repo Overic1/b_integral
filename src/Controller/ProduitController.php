@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
+use App\Form\ProduitType;
 use App\Entity\Entreprise;
+use GuzzleHttp\Exception\RequestException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
-use App\Form\ProduitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProduitController extends AbstractController
@@ -41,8 +42,7 @@ class ProduitController extends AbstractController
         if ($statusCode === 200) {
 
             $produitData = $produitResponse->toArray();
-
-
+            // dd($produitData);
             for ($i = 0; $i < count($produitData); $i++) {
                 $ref = $produitData[$i]['ref'];
                 $label = $produitData[$i]['label'];
@@ -94,14 +94,16 @@ class ProduitController extends AbstractController
 
         ]);
     }
+    
 
     #[Route('/produit/new', name: 'produit.new', methods: ['GET', 'POST'])]
     public function create(Request $request, HttpClientInterface $httpClient): Response
     {
+        // Créer le formulaire et l'associer à la requête
         $form = $this->createForm(ProduitType::class);
-        
+        $form->handleRequest($request);
 
-        // Envoyer la requête POST à l'API pour créer l'utilisateur
+
         $user = $this->security->getUser();
         $apiKey = '';
         $url = '';
@@ -109,69 +111,70 @@ class ProduitController extends AbstractController
         if ($user instanceof Entreprise) {
             $apiKey = $user->getApiKey();
             $url = $user->getBaseUrl();
+            $codeEnseigne = $user->getCodeEntreprise();
         }
-
-        // // Récupérer les données fournies par l'utilisateur
-        $label = $request->request->get('label');
-        $description = $request->request->get('description');
-        $type = $request->request->get('type');
-        $barcode = $request->request->get('barcode');
-        $ref = $request->request->get('ref');
-        $price = $request->request->get('price');
-        $price_ttc = $request->request->get('price_ttc');
-        $status_buy = $request->request->get('status_buy');
-        $status = $request->request->get('status');
-        $tva_tx = $request->request->get('tva_tx');
-        $options_taxgroup = $request->request->get('options_taxgroup');
-        $options_taxspecific = $request->request->get('options_taxspecific');
-        $options_qty = $request->request->get('options_qty');
-        // $options_categories = $request->request->get('options_categories');
-        // $options_url_image = $request->request->get('options_url_image');
-
-        $codeEnseigne = "RXUX";
+        
+        // $codeEnseigne = "RXUX";
+        
         $randomNumber = rand(100000, 999999);
-        $ref = "1" . $codeEnseigne . "-" . $randomNumber;
+        $ref = $codeEnseigne . "-" .'PT'. '-' . $randomNumber; 
         
+        // Vérifier si le formulaire a été soumis et est valide
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Récupérer les données du formulaire
+            $formData = $form->getData();
+
+            // Construire le tableau des données à envoyer à l'API
+            $produitData = [
+                "label" => $formData['label'],
+                "description" => $formData['description'],
+                "type" => "0",
+                "barcode" => $formData['barcode'],
+                "ref" => $ref,
+                "price" => $formData['price'],
+                "price_ttc" => $formData['price_ttc'],
+                "status_buy" => $formData['status_buy'],
+                "status" => $formData['status'],
+                "tva_tx" => $formData['tva_tx'],
+                // "stock_reel" => $formData['stock_reel'],
+                "array_options" => [
+                    // "options_taxgroup" => $formData['options_taxgroup'],
+                    // "options_taxspecific" => $formData['options_taxspecific'],
+                    "options_qty" => $formData['options_qty'],
+                    // "options_categories" => "id_categorie",
+                    // "options_url_image" => "valeur de img"
+                ]
+            ];
+            // dd($produitData);
+                try {
         
+                    // Envoyer la requête POST à l'API pour créer le produit
+                $response = $httpClient->request('POST', $url . 'index.php/products' . '?DOLAPIKEY=' . $apiKey, [
+                    'json' => $produitData
+                ]);
 
-        // Construire le tableau des données à envoyer à l'API
-        $entrepotData = [
-            "label" => $label,
-            "description" => $description,
-            "type" => "0",
-            "barcode" => $barcode,
-            "ref" => $ref,
-            "price" => $price,
-            "price_ttc" => $price_ttc,
-            "status_buy" => $status_buy,
-            "status" => $status,
-            "tva_tx" => $tva_tx,
-            "array_options" => [
-                "options_taxgroup" => $options_taxgroup ,
-                "options_taxspecific" => $options_taxspecific,
-                "options_qty" => "valeur de stock_reel",
-                "options_categories" => "id_categorie",
-                "options_url_image" => "valeur de img"
-            ]
-        ];
+                $statusCode = $response->getStatusCode();
 
-        $response = $httpClient->request('POST', $url . 'index.php/products' . '?DOLAPIKEY=' . $apiKey, [
-            'json' => $entrepotData
-        ]);
-
-        $statusCode = $response->getStatusCode();
-
-        // Traiter la réponse de l'API
-        if ($statusCode === 200) {
-            // Utilisateur créé avec succès
-            $this->addFlash(
-                'success',
-                'L\'enregistrement a été éffectué avec succès !'
-            );
-            return $this->redirectToRoute('produit.list');
+                // Traiter la réponse de l'API
+                if ($statusCode === 200) {
+                    // Produit créé avec succès
+                    $this->addFlash(
+                        'success',
+                        'Le produit a été effectué avec succès !'
+                    );
+                    return $this->redirectToRoute('produit.list');
+                }
+            } catch (RequestException $e) {
+                // Gérer les erreurs de requête HTTP
+                $errorMessage = 'Une erreur est survenue lors de la communication avec l\'API : ';
+                $this->addFlash(
+                    'error',
+                    $errorMessage
+                );
+                // return $this->redirectToRoute('produit.new');
+            }
         }
-
-        return $this->render('pages/produit/new.html.twig',[
+        return $this->render('pages/produit/newpro.html.twig', [
             'form' => $form->createView(),
         ]);
     }

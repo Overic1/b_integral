@@ -100,32 +100,50 @@
 					</div>
 				</div>
 
+				            {# Dashboard items start #}
 				<ul class="sidebar-nav">
-					<li class="sidebar-header">
-						Pages
-					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#dashboards" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboards</span>
-						</a>
-					</li>
+                    <li class="sidebar-header">
+                        Pages
+                                            
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="{{path('index')}}">
+                            <i class="align-middle" data-feather="sliders"></i>
+                            <span class="align-middle">
+                                Dashboard
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-header">
+                        MagmaERP
+                                            
+                    </li>
+                
                     <li class="sidebar-item">
                         <a data-bs-target="#pages" data-bs-toggle="collapse" class="sidebar-link collapsed">
                             <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Factures</span>
+                            <i class="align-middle" data-feather="chevron-right"></i>
                         </a>
                         <ul id="pages" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('facture.list') }}">Listes des factures</a></li>
                         </ul>
                     </li>
 
+                     <li class="sidebar-header">
+                        CareCONCEPT
+                    </li>
+                    
                     <li class="sidebar-item">
                         <a data-bs-target="#tiers" data-bs-toggle="collapse" class="sidebar-link collapsed">
                             <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Tiers</span>
+                            <i class="align-middle" data-feather="chevron-right"></i>
                         </a>
                         <ul id="tiers" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                            <li class="sidebar-item "><a class="sidebar-link" href="{{ path('tiers.list') }}">Listes des tiers</a></li>
+                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('tiers.list') }}">Listes des tiers</a></li>
                         </ul>
-						 <ul id="tiers" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                         <ul id="tiers" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('prospects.list') }}">Listes des prospects</a></li>
                         </ul>
 						<ul id="tiers" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
@@ -134,20 +152,18 @@
 						<ul id="tiers" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('fournisseurs.list') }}">Listes des fournisseurs</a></li>
                         </ul>
-                    </li>
-
-					 <li class="sidebar-item active">
-                        <a data-bs-target="#produit" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                            <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Produits</span>
-                        </a>
-                        <ul id="produit" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                            <li class="sidebar-item active"><a class="sidebar-link" href="{{ path('produit.list') }}">Listes des produits</a></li>
+                        <ul id="tiers" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('tiers.new') }}">Créer un nouveau client</a></li>
                         </ul>
                     </li>
-
-					<li class="sidebar-item">
+                    
+                    <li class="sidebar-header">
+                        BPay    					
+                    </li>
+                    <li class="sidebar-item">
                         <a data-bs-target="#banquecaisse" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                            <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Banques et caisses</span>
+                            <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Banque et caisse</span>
+                            <i class="align-middle" data-feather="chevron-right"></i>
                         </a>
                         <ul id="banquecaisse" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('banque.list') }}">Compte bancaire</a></li>
@@ -156,8 +172,49 @@
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('caisse.list') }}">Caisse</a></li>
                         </ul>
                     </li>
-					
-					
+
+                    <li class="sidebar-header">
+                        InstantMARK				
+                    </li>
+                    <li class="sidebar-item">
+                        <a data-bs-target="#proposition" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                            <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Propositions commercials</span>
+                            {# <i class="align-middle" data-feather="chevron-right"></i> #}
+                        </a>
+                        <ul id="proposition" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('proposition.list') }}">Listes des propositions commercials</a></li>
+                        </ul> 
+                    </li>
+
+                    <li class="sidebar-header">
+                        CollaBUS
+                    </li>
+                    <li class="sidebar-item">
+                        <a data-bs-target="#user" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                            <i class="align-middle" data-feather="user"></i> <span class="align-middle">Collaborateurs</span>
+                            <i class="align-middle" data-feather="chevron-right"></i>
+                        </a>
+                        <ul id="user" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('user.list') }}">Listes des collaborateurs</a></li>
+                        </ul> 
+                    </li>
+
+                    
+                    <li class="sidebar-header">
+                       CashLINE
+                                            
+                    </li>
+                    <li class="sidebar-item active">
+                        <a data-bs-target="#produit" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                            <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Produit</span>
+                        </a>
+                        <ul id="produit" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('produit.list') }}">Listes des produits</a></li>
+                        </ul>
+                        <ul id="produit" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                            <li class="sidebar-item active"><a class="sidebar-link" href="{{ path('produit.new') }}">Créer un produit</a></li>
+                        </ul>
+                    </li>
                     <li class="sidebar-item">
                         <a data-bs-target="#entrepots" data-bs-toggle="collapse" class="sidebar-link collapsed">
                             <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Entrepots</span>
@@ -167,7 +224,7 @@
                         </ul> 
                     </li>
 
-					<li class="sidebar-item">
+                    <li class="sidebar-item">
                         <a data-bs-target="#bondecommande" data-bs-toggle="collapse" class="sidebar-link collapsed">
                             <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Bons  de commandes</span>
                         </a>
@@ -175,237 +232,10 @@
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('bondecommande.list') }}">Listes des bon de commandes</a></li>
                         </ul> 
                     </li>
-                    <li class="sidebar-item">
-                        <a data-bs-target="#proposition" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                            <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Propositions commercials</span>
-                        </a>
-                        <ul id="proposition" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('proposition.list') }}">Listes des propositions commercials</a></li>
-                        </ul> 
-                    </li>
 					
-					<li class="sidebar-item">
-                        <a data-bs-target="#user" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                            <i class="align-middle" data-feather="user"></i> <span class="align-middle">Collaborateurs</span>
-                        </a>
-                        <ul id="user" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('user.list') }}">Listes des collaborateurs</a></li>
-                        </ul> 
-                    </li>
-					<li class="sidebar-item">
-						<a data-bs-target="#pages" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="layout"></i> <span class="align-middle">Pages</span>
-						</a>
-						<ul id="pages" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="{{path('setting')}}">Settings</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-projects.html">Projects <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-clients.html">Clients <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-orders.html">Orders <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-pricing.html">Pricing <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-chat.html">Chat <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-blank.html">Blank Page</a></li>
-						</ul>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="{{path('profile')}}">
-							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
-						</a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-invoice.html">
-							<i class="align-middle" data-feather="credit-card"></i> <span class="align-middle">Invoice</span>
-						</a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-tasks.html">
-							<i class="align-middle" data-feather="list"></i> <span class="align-middle">Tasks</span>
-							<span class="sidebar-badge badge bg-primary">Pro</span>
-						</a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="calendar.html">
-							<i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Calendar</span>
-							<span class="sidebar-badge badge bg-primary">Pro</span>
-						</a>
-					</li>
-
-					<li class="sidebar-item">
-						<a href="#auth" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="users"></i> <span class="align-middle">Auth</span>
-						</a>
-						<ul id="auth" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-sign-in.html">Sign In</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-sign-up.html">Sign Up</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-reset-password.html">Reset Password <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-404.html">404 Page <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-500.html">500 Page <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-						</ul>
-					</li>
-
-					<li class="sidebar-header">
-						Components
-					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#ui" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">UI Elements</span>
-						</a>
-						<ul id="ui" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-alerts.html">Alerts</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-buttons.html">Buttons</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-cards.html">Cards</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-general.html">General</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-grid.html">Grid</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-modals.html">Modals</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-offcanvas.html">Offcanvas <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-placeholders.html">Placeholders <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-tabs.html">Tabs <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-typography.html">Typography</a></li>
-						</ul>
-					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#icons" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span>
-							<span class="sidebar-badge badge bg-light">1.500+</span>
-						</a>
-						<ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="icons-feather.html">Feather</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="icons-font-awesome.html">Font Awesome <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-						</ul>
-					</li>
-					<li class="sidebar-item active">
-						<a data-bs-target="#forms" data-bs-toggle="collapse" class="sidebar-link">
-							<i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Forms</span>
-						</a>
-						<ul id="forms" class="sidebar-dropdown list-unstyled collapse show" data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="forms-basic-inputs.html">Basic Inputs</a></li>
-							<li class="sidebar-item active"><a class="sidebar-link" href="forms-layouts.html">Form Layouts <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="forms-input-groups.html">Input Groups <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-						</ul>
-					</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="tables-bootstrap.html">
-							<i class="align-middle" data-feather="list"></i> <span class="align-middle">Tables</span>
-						</a>
-					</li>
-
-					<li class="sidebar-header">
-						Plugins & Addons
-					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#form-plugins" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Form Plugins</span>
-						</a>
-						<ul id="form-plugins" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="forms-advanced-inputs.html">Advanced Inputs <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="forms-editors.html">Editors <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="forms-validation.html">Validation <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-						</ul>
-					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#datatables" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="list"></i> <span class="align-middle">DataTables</span>
-						</a>
-						<ul id="datatables" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="tables-datatables-responsive.html">Responsive Table <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="tables-datatables-buttons.html">Table with Buttons <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="tables-datatables-column-search.html">Column Search <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="tables-datatables-fixed-header.html">Fixed Header <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="tables-datatables-multi.html">Multi Selection <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="tables-datatables-ajax.html">Ajax Sourced Data <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-						</ul>
-					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#charts" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Charts</span>
-						</a>
-						<ul id="charts" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="charts-chartjs.html">Chart.js</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="charts-apexcharts.html">ApexCharts <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-						</ul>
-					</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="notifications.html">
-							<i class="align-middle" data-feather="bell"></i> <span class="align-middle">Notifications</span>
-							<span class="sidebar-badge badge bg-primary">Pro</span>
-						</a>
-					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#maps" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span>
-						</a>
-						<ul id="maps" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="maps-google.html">Google Maps</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="maps-vector.html">Vector Maps <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-						</ul>
-					</li>
-
-					<li class="sidebar-item">
-						<a data-bs-target="#multi" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="corner-right-down"></i> <span class="align-middle">Multi Level</span>
-						</a>
-						<ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-							<li class="sidebar-item">
-								<a data-bs-target="#multi-2" data-bs-toggle="collapse" class="sidebar-link collapsed">Two Levels</a>
-								<ul id="multi-2" class="sidebar-dropdown list-unstyled collapse">
-									<li class="sidebar-item">
-										<a class="sidebar-link" href="#">Item 1</a>
-									</li>
-									<li class="sidebar-item">
-										<a class="sidebar-link" href="#">Item 2</a>
-									</li>
-								</ul>
-							</li>
-							<li class="sidebar-item">
-								<a data-bs-target="#multi-3" data-bs-toggle="collapse" class="sidebar-link collapsed">Three Levels</a>
-								<ul id="multi-3" class="sidebar-dropdown list-unstyled collapse">
-									<li class="sidebar-item">
-										<a data-bs-target="#multi-3-1" data-bs-toggle="collapse" class="sidebar-link collapsed">Item 1</a>
-										<ul id="multi-3-1" class="sidebar-dropdown list-unstyled collapse">
-											<li class="sidebar-item">
-												<a class="sidebar-link" href="#">Item 1</a>
-											</li>
-											<li class="sidebar-item">
-												<a class="sidebar-link" href="#">Item 2</a>
-											</li>
-										</ul>
-									</li>
-									<li class="sidebar-item">
-										<a class="sidebar-link" href="#">Item 2</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</li>
 				</ul>
+                            {# Dashboard items start #}
+
 
 				<div class="sidebar-cta">
 					<div class="sidebar-cta-content">
@@ -519,7 +349,7 @@
 				<div class="container-fluid p-0">
 
 					<div class="mb-3">
-						<h1 class="h3 d-inline align-middle">User form</h1><a class="badge bg-primary ms-2" href="https://adminkit.io/pricing/"
+						<h1 class="h3 d-inline align-middle">Nouveau produit</h1><a class="badge bg-primary ms-2" href="https://adminkit.io/pricing/"
 							target="_blank">Pro Component <i class="fas fa-fw fa-external-link-alt"></i></a>
 					</div>
 
@@ -533,105 +363,105 @@
 							
 							</div>
 						</div>
-						 	{% for message in app.flashes('success') %}
-                                <div class=" alert alert-success mt-4">
-                                    {{ message }}
-                                </div>
-                            {% endfor %}
 						<div class="col-md-12">
 							<div class="card">
-							
 								<div class="card-body">
+									{% for message in app.flashes('error') %}
+										<div class=" alert alert-success mt-4">
+											{{ message }}
+										</div>
+									{% endfor %}
 									{# pages/user/create.html.twig #}
-                                      <div class="container ">
+                                    <div class="container ">
                                         <h2>Formulaire d'enregistrement des produits</h2>
-                                        {{ form_start(form) }}
-                                            <div class="form-group">
+                                            {{ form_start(form,{ 'attr': {'class': 'row g-3'} }) }}
+                                            <div class="col-md-3">
                                                 {{ form_label(form.label) }}
                                                 {{ form_widget(form.label) }}
                                                 <div class="form-error">
                                                     {{ form_errors(form.label) }}
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="col-md-3">
                                                 {{ form_label(form.description) }}
                                                 {{ form_widget(form.description) }}
                                                 <div class="form-error">
                                                     {{ form_errors(form.description) }}
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="col-md-3">
                                                 {{ form_label(form.barcode) }}
                                                 {{ form_widget(form.barcode) }}
                                                 <div class="form-error">
                                                     {{ form_errors(form.barcode) }}
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="col-md-3">
                                                 {{ form_label(form.price) }}
                                                 {{ form_widget(form.price) }}
                                                 <div class="form-error">
                                                     {{ form_errors(form.price) }}
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="col-md-3">
                                                 {{ form_label(form.price_ttc) }}
                                                 {{ form_widget(form.price_ttc) }}
                                                 <div class="form-error">
                                                     {{ form_errors(form.price_ttc) }}
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="col-md-3">
                                                 {{ form_label(form.status_buy) }}
                                                 {{ form_widget(form.status_buy) }}
                                                 <div class="form-error">
                                                     {{ form_errors(form.status_buy) }}
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="col-md-3">
                                                 {{ form_label(form.status) }}
                                                 {{ form_widget(form.status) }}
                                                 <div class="form-error">
                                                     {{ form_errors(form.status) }}
                                                 </div>
                                             </div>
-                                             <div class="form-group">
+                                            <div class="col-md-3">
                                                 {{ form_label(form.tva_tx) }}
                                                 {{ form_widget(form.tva_tx) }}
                                                 <div class="form-error">
                                                     {{ form_errors(form.tva_tx) }}
                                                 </div>
-                                            </div> <div class="form-group">
+                                            </div> 
+                                            <div class="col-md-3">
                                                 {{ form_label(form.options_taxgroup) }}
                                                 {{ form_widget(form.options_taxgroup) }}
-                                                <div class="form-error">
-                                                    {{ form_errors(form.options_taxgroup) }}
-                                                </div>
-                                            </div> <div class="form-group">
+                                            <div class="form-error">
+                                                {{ form_errors(form.options_taxgroup) }}
+                                            </div>
+                                            </div>
+                                            <div class="col-md-3">
                                                 {{ form_label(form.options_taxspecific) }}
                                                 {{ form_widget(form.options_taxspecific) }}
                                                 <div class="form-error">
                                                     {{ form_errors(form.options_taxspecific) }}
                                                 </div>
-                                            </div> <div class="form-group">
+                                            </div>                                          
+                                            <div class="col-md-3">
                                                 {{ form_label(form.options_qty) }}
                                                 {{ form_widget(form.options_qty) }}
                                                 <div class="form-error">
                                                     {{ form_errors(form.options_qty) }}
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="col-md-12">
                                                 {{ form_row(form.submit) }}
                                             </div>
-                                            {# </div> #}
                                             {{ form_end(form) }}
+                                        {# </div> #}
                                     </div>
-
-								</div>
+                                </div>
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</main>
 
@@ -667,7 +497,7 @@
 
 	<script src="{{asset('assets/dist/js/app.js')}}"></script>
 
-<script>
+	<script>
   document.addEventListener("DOMContentLoaded", function(event) { 
     setTimeout(function(){
       if(localStorage.getItem('popState') !== 'shown'){

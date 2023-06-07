@@ -71,6 +71,9 @@ class Entreprise implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length:255, nullable: true)]
     private ?string $passBase = null;
 
+    #[ORM\Column(length: 255,nullable: true)]
+    private ?string $codeEntreprise = null;
+
     public function __construct()
     {
         // $this->setNomDeLaBase();
@@ -316,6 +319,18 @@ class Entreprise implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getCodeEntreprise(): ?string
+    {
+        return $this->codeEntreprise;
+    }
+
+    public function setCodeEntreprise(): self
+    {
+        $this->codeEntreprise = $this->genererCode();
+
+        return $this;
+    }
+
     public function generateStrongPassword(): string
     {
         $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_';
@@ -329,6 +344,14 @@ class Entreprise implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $password;
+    }
+
+    public function genererCode() : string
+    {
+        //  $chiffre = mt_rand(0, 9);
+        $lettres = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 3);
+        $code = 1 . $lettres;
+        return $code;
     }
 
     public function createjdb(string $dbName) : string{
@@ -345,5 +368,11 @@ class Entreprise implements UserInterface, PasswordAuthenticatedUserInterface
             // echo "Erreur lors de la création de la base de données : " . $e->getMessage();
         } 
     }
+
     
+
+ 
+
+
+  
 }

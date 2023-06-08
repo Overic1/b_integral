@@ -185,7 +185,7 @@ class BanquecaisseController extends AbstractController
                 "ref" => $ref,
                 "type" => $formData["type"],
                 "clos" => $formData["clos"],
-                "currency_code" => "",
+                "currency_code" => $formData["currency_code"],
                 "country_id" => $formData["country_id"]
             ];
             // dd($banquecaisseData);
@@ -197,7 +197,7 @@ class BanquecaisseController extends AbstractController
                 ]);
 
                 $statusCode = $response->getStatusCode();
-// dd($statusCode);
+                // dd($statusCode);
                 // Traiter la réponse de l'API
                 if ($statusCode === 200) {
                     // banquecaisse créé avec succès

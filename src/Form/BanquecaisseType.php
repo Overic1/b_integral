@@ -81,19 +81,21 @@ class BanquecaisseType extends AbstractType
                     new Assert\NotBlank()
                 ]
             ])
-            // ->add('currency_code', ChoiceType::class, [
-            //     // 'choices' => $choices,  
-            //     'attr' => [
-            //         'class' => 'form-select',
-            //     ],
-            //     'label' => 'Device',
-            //     'label_attr' => [
-            //         'class' => 'form-label'
-            //     ],
-            //     'constraints' => [
-            //         new Assert\NotBlank()
-            //     ]
-            // ])
+            ->add('currency_code', ChoiceType::class, [
+                'choices'  => [
+                    'CFA' => 'XOF',
+                ],  
+                'attr' => [
+                    'class' => 'form-select',
+                ],
+                'label' => 'Device',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'constraints' => [
+                    new Assert\NotBlank()
+                ]
+            ])
 
             ->add('submit', SubmitType::class, [
                 'attr' => [

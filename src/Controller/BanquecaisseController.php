@@ -2,14 +2,15 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Entreprise;
+use App\Form\BanquecaisseType;
 use GuzzleHttp\Exception\RequestException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class BanquecaisseController extends AbstractController
 {
@@ -48,7 +49,6 @@ class BanquecaisseController extends AbstractController
 
             $banqueData = $banqueResponse->toArray();
 
-
             for ($i = 0; $i < count($banqueData); $i++) {
                 if($banqueData[$i]['type'] == 1 ){
                     $label = $banqueData[$i]['label'];
@@ -74,11 +74,7 @@ class BanquecaisseController extends AbstractController
                 'data' => $data
                 
             ]);
-        } else {
-            return $this->render('pages/banquecaisse/banquelist.html.twig', [
-                'data' => 'pas de données'
-
-            ]);
+       
         }
     }
 
@@ -91,8 +87,6 @@ class BanquecaisseController extends AbstractController
     #[Route('/caisse', name: 'caisse.list')]
     public function listcaisse(HttpClientInterface  $httpClient): Response
     {
-
-
 
         $user = $this->security->getUser();
         $apiKey = '';
@@ -112,7 +106,6 @@ class BanquecaisseController extends AbstractController
 
             $caisseData = $caisseResponse->toArray();
 
-
             for ($i = 0; $i < count($caisseData); $i++) {
                 if ($caisseData[$i]['type'] == 2 ) {
 
@@ -129,15 +122,11 @@ class BanquecaisseController extends AbstractController
                 }
             }
 
-        return $this->render('pages/banquecaisse/caisselist.html.twig', [
-                'data' => $data
-            
-        ]);
-        } else {
-            return $this->render('pages/banquecaisse/banquelist.html.twig', [
-                'data' => 'pas de données'
-
+            return $this->render('pages/banquecaisse/caisselist.html.twig', [
+                    'data' => $data
+                
             ]);
+        
         }
     }
 
@@ -146,8 +135,28 @@ class BanquecaisseController extends AbstractController
     #[Route('/banquecaisse/new', name: 'banquecaisse.new', methods: ['GET', 'POST'])]
     public function create(Request $request, HttpClientInterface $httpClient): Response
     {
+
+
+        $contriesResponse = $httpClient->request('GET', 'https://webstocks.myn2a.online/ccibdev/public/index.php/api/countries');
+        $statusCode = $contriesResponse->getStatusCode();
+
+
+        $contriesData = [];
+        if($statusCode == 200){
+            $contriesData = $contriesResponse->toArray();
+            $contriesData = $contriesData["hydra:member"];
+            for ($i = 0; $i < count($contriesData); $i++){
+                $choices[$i][$contriesData[$i]['label']] = $contriesData[$i]['id'];                
+            }
+        }
+        // rsort($choices);
+        // dd($choices);
+
+        
         // Créer le formulaire et l'associer à la requête
-        $form = $this->createForm(banquecaisseType::class);
+        $form = $this->createForm(BanquecaisseType::class,null, [
+            'choices' => $choices,
+        ]);
         $form->handleRequest($request);
 
 
@@ -163,7 +172,7 @@ class BanquecaisseController extends AbstractController
 
 
         $randomNumber = rand(100000, 999999);
-        $ref = $codeEnseigne . "-" . 'PT' . '-' . $randomNumber;
+        $ref = $codeEnseigne . "-" . 'BC' . '-' . $randomNumber;
 
         // Vérifier si le formulaire a été soumis et est valide
         if ($form->isSubmitted() && $form->isValid()) {
@@ -172,36 +181,40 @@ class BanquecaisseController extends AbstractController
 
             // Construire le tableau des données à envoyer à l'API
             $banquecaisseData = [
-                "label" => $formData['label'],
-                "description" => $formData['description'],
-                "type" => "0",
-                "barcode" => $formData['barcode'],
+                "label" => $formData["label"],
                 "ref" => $ref,
-                "price" => $formData['price'],
-                "price_ttc" => $formData['price_ttc'],
-                "status_buy" => $formData['status_buy'],
-                "status" => $formData['status'],
-                "tva_tx" => $formData['tva_tx'],
-                // "stock_reel" => $formData['stock_reel'],
+                "type" => $formData["type"],
+                "clos" => $formData["clos"],
+                "currency_code" => "",
+                "country_id" => $formData["country_id"]
             ];
             // dd($banquecaisseData);
             try {
 
                 // Envoyer la requête POST à l'API pour créer le banquecaisse
-                $response = $httpClient->request('POST', $url . 'index.php/products' . '?DOLAPIKEY=' . $apiKey, [
+                $response = $httpClient->request('POST', $url . 'index.php/bankaccounts' . '?DOLAPIKEY=' . $apiKey, [
                     'json' => $banquecaisseData
                 ]);
 
                 $statusCode = $response->getStatusCode();
-
+// dd($statusCode);
                 // Traiter la réponse de l'API
                 if ($statusCode === 200) {
                     // banquecaisse créé avec succès
-                    $this->addFlash(
-                        'success',
-                        'Le banquecaisse a été effectué avec succès !'
-                    );
-                    return $this->redirectToRoute('banquecaisse.list');
+                    // dd(var_dump($formData["type"]));
+                    if($formData["type"] == 1){
+                        $this->addFlash(
+                            'success',
+                            'La banque été créer avec succès !'
+                        );
+                        return $this->redirectToRoute('banque.list');
+                    }else{
+                        $this->addFlash(
+                            'success',
+                            'La caisse été créer avec succès !'
+                        );
+                        return $this->redirectToRoute('caisse.list');
+                    }
                 }
             } catch (RequestException $e) {
                 // Gérer les erreurs de requête HTTP
@@ -213,7 +226,7 @@ class BanquecaisseController extends AbstractController
                 // return $this->redirectToRoute('banquecaisse.new');
             }
         }
-        return $this->render('pages/banquecaisse/newpro.html.twig', [
+        return $this->render('pages/banquecaisse/new.html.twig', [
             'form' => $form->createView(),
         ]);
     }

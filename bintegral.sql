@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 29 mai 2023 à 23:55
+-- Généré le : dim. 11 juin 2023 à 18:25
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.1
 
@@ -49,7 +49,12 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20230526152836', '2023-05-26 17:29:30', 893),
 ('DoctrineMigrations\\Version20230526155237', '2023-05-26 17:53:40', 2992),
 ('DoctrineMigrations\\Version20230526172454', '2023-05-26 19:25:03', 2994),
-('DoctrineMigrations\\Version20230529131949', '2023-05-29 15:24:44', 1515);
+('DoctrineMigrations\\Version20230529131949', '2023-05-29 15:24:44', 1515),
+('DoctrineMigrations\\Version20230529132434', '2023-06-05 13:55:12', 424),
+('DoctrineMigrations\\Version20230529132751', '2023-06-05 13:31:06', 643),
+('DoctrineMigrations\\Version20230529133027', '2023-06-05 13:55:12', 980),
+('DoctrineMigrations\\Version20230605111141', '2023-06-05 13:31:32', 490),
+('DoctrineMigrations\\Version20230605115646', '2023-06-05 13:56:55', 3140);
 
 -- --------------------------------------------------------
 
@@ -72,6 +77,7 @@ CREATE TABLE `entreprise` (
   `nom_de_la_base` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `pass_base` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `code_entreprise` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `roles` longtext COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '(DC2Type:json)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -79,8 +85,10 @@ CREATE TABLE `entreprise` (
 -- Déchargement des données de la table `entreprise`
 --
 
-INSERT INTO `entreprise` (`id`, `nom`, `email`, `password`, `base_url`, `api_key`, `num_tel`, `num_ifu`, `num_nim`, `logo`, `installation_id`, `nom_de_la_base`, `user`, `pass_base`, `roles`) VALUES
-(52, 'LAUREX STORE', 'laurexstore@myne2.online', '$2y$10$wAJl6M5UePBBzTaRFzNK9uuQIJq2u.sqjWRz5ezzOqP.gBz81GD6C', 'https://erp.myn2a.online/laurexstore/htdocs/api/', '4NURInpqF2Rl47v1tcyAqQcN2S695GfL98kWhU5X3faWS5dVOz0y4AjPz22k25QtN4', NULL, NULL, NULL, NULL, NULL, 'erplaurex store', 'erp_laurex store', 'S24l#4ZNUMzR7!TU6bct3dH9', '[\"ROLE_USER\"]');
+INSERT INTO `entreprise` (`id`, `nom`, `email`, `password`, `base_url`, `api_key`, `num_tel`, `num_ifu`, `num_nim`, `logo`, `installation_id`, `nom_de_la_base`, `user`, `pass_base`, `code_entreprise`, `roles`) VALUES
+(52, 'LAUREX STORE', 'laurexstore@myne2.online', '$2y$10$wAJl6M5UePBBzTaRFzNK9uuQIJq2u.sqjWRz5ezzOqP.gBz81GD6C', 'https://erp.myn2a.online/laurexstore/htdocs/api/', '4NURInpqF2Rl47v1tcyAqQcN2S695GfL98kWhU5X3faWS5dVOz0y4AjPz22k25QtN4', NULL, NULL, NULL, NULL, 3, 'erplaurex store', 'erp_laurex store', 'S24l#4ZNUMzR7!TU6bct3dH9', '1HKY', ''),
+(54, 'MTN', 'sa@gmail.com', '$2y$10$ceCho2x1LAGAGPnSjp.1Z./WqjOcSzLiVr.9/NYsl2m/tnEWhrSmC', NULL, NULL, NULL, NULL, NULL, NULL, 3, 'erpmtn', 'erp_mtn', 'Pbs77v8Cb4D47Dw5IyN1y4Ra', '1WLR', '[\"ROLE_USER\"]'),
+(55, 'admin', 'admin@gmail.com', '$2y$10$s5WLQURf5BJTy27KejABsuYAyXhjpiW0neEzhyWuVHULkX.y2exTa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'erpadmin', 'erp_admin', 'sTx&jp1HF^r%M8B0_nYnHl3j', '1KXV', '[\"ROLE_ADMIN\"]');
 
 -- --------------------------------------------------------
 
@@ -162,7 +170,7 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT pour la table `entreprise`
 --
 ALTER TABLE `entreprise`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT pour la table `installation`

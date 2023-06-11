@@ -25,7 +25,18 @@ class HomeController extends AbstractController
     #[Route('/', name: 'acceuil')]
     public function acceuil(): Response
     {
-        return $this->render('/homepage.html.twig');
+        if( $this->security->getUser()){
+            $isAdmin = in_array('ROLE_ADMIN', $this->getUser()->getRoles());
+    
+                return $this->render('/homepage.html.twig', [
+                    'isAdmin' => $isAdmin,
+
+                ]);
+        }else{
+                return $this->render('/homepage.html.twig', [
+                ]);
+            }
+        
     }
 
      #[Route('/entreprise/acceuil', name: 'index')]
@@ -34,7 +45,6 @@ class HomeController extends AbstractController
         // $apiKey = '4NURInpqF2Rl47v1tcyAqQcN2S695GfL98kWhU5X3faWS5dVOz0y4AjPz22k25QtN4';
                 
         // $url = 'https://erp.myn2a.online/laurexstore/htdocs/api/index.php/invoices';
-
         $user = $this->security->getUser();
         $apiKey = '';
         $url = ''; 

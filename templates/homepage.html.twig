@@ -12,12 +12,12 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     {% if app.user %}
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{{ path('index') }}">Dashbord</span></a>
-      </li>    
+        <ul class="navbar-nav mr-auto">
+           <li class="nav-item active">
+                <a class="nav-link" href="{{ path('security.logout') }}">Se deconnecter</span></a>
+            </li> 
+        </ul>
     {% endif %}
-    </ul>
     
   </div>
 </nav>
@@ -28,7 +28,16 @@
         <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
         <hr class="my-4">
         <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn btn-primary btn-lg" href="{{ path('security.login') }}" role="button">Se connecter</a>
+        {% if app.user %}
+            {% if isAdmin %}
+                <a class="btn btn-primary btn-lg" href="{{ path('admin') }}" role="button">Interface administrateur</a>    
+            {% else %}
+                <a class="btn btn-primary btn-lg" href="{{ path('index') }}" role="button">Voir le Dashbord</a>    
+            {% endif %}
+        {% else %}
+            <a class="btn btn-primary btn-lg" href="{{ path('security.login') }}" role="button">Se connecter</a>
+        {% endif %}        
     </div>
 </div>
+
 {% endblock %}

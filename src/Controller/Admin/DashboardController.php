@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use PDO;
 use App\Entity\Entreprise;
 use App\Entity\Installation;
 use Doctrine\ORM\EntityManagerInterface;
@@ -9,11 +10,11 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use Symfony\Component\HttpKernel\KernelInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
-use Symfony\Component\HttpKernel\KernelInterface;
 // use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 class DashboardController extends AbstractDashboardController

@@ -31,7 +31,7 @@ class BanquecaisseController extends AbstractController
     #[Route('/entreprise/banque', name: 'banque.list')]
     public function banquelist(HttpClientInterface  $httpClient): Response
     {
-
+        
         $user = $this->security->getUser();
         $apiKey = '';
         $url = '';

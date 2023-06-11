@@ -22,11 +22,11 @@ class HomeController extends AbstractController
     }
 
 
-    // #[Route('/', name: 'acceuil')]
-    // public function acceuil(): Response
-    // {
-    //     return $this->render('pages/homepage.html.twig');
-    // }
+    #[Route('/', name: 'acceuil')]
+    public function acceuil(): Response
+    {
+        return $this->render('/homepage.html.twig');
+    }
 
      #[Route('/entreprise/acceuil', name: 'index')]
     public function index(HttpClientInterface  $httpClient): Response

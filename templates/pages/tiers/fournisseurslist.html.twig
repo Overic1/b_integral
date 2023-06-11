@@ -77,7 +77,7 @@
 					</div>
 				</div>
 
-				                 {# Dashboard items start #}
+				          {# Dashboard items start #}
 				<ul class="sidebar-nav">
                     <li class="sidebar-header">
                         Pages
@@ -98,13 +98,16 @@
                                             
                     </li>
                 
-                    <li class="sidebar-item">
+                    <li class="sidebar-item ">
                         <a data-bs-target="#pages" data-bs-toggle="collapse" class="sidebar-link collapsed">
                             <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Factures</span>
                             <i class="align-middle" data-feather="chevron-right"></i>
                         </a>
                         <ul id="pages" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('facture.list') }}">Listes des factures</a></li>
+                            <li class="sidebar-item "><a class="sidebar-link" href="{{ path('facture.list') }}">Listes des factures</a></li>
+                        </ul>
+                        <ul id="pages" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                            <li class="sidebar-item "><a class="sidebar-link" href="{{ path('facture.new') }}">Créer une facture</a></li>
                         </ul>
                     </li>
 
@@ -139,7 +142,7 @@
                     </li>
                     <li class="sidebar-item">
                         <a data-bs-target="#banquecaisse" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                            <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Banque et caisse</span>
+                            <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Banques et caisses</span>
                             <i class="align-middle" data-feather="chevron-right"></i>
                         </a>
                         <ul id="banquecaisse" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
@@ -147,6 +150,9 @@
                         </ul> 
                         <ul id="banquecaisse" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('caisse.list') }}">Caisse</a></li>
+                        </ul>
+                        <ul id="banquecaisse" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('banquecaisse.new') }}">Crééer une banque/caisse</a></li>
                         </ul>
                     </li>
 
@@ -161,6 +167,9 @@
                         <ul id="proposition" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('proposition.list') }}">Listes des propositions commercials</a></li>
                         </ul> 
+                        <ul id="proposition" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                            <li class="sidebar-item "><a class="sidebar-link" href="{{ path('proposition.new') }}">Créer une propositions commercials</a></li>
+                        </ul> 
                     </li>
 
                     <li class="sidebar-header">
@@ -174,6 +183,9 @@
                         <ul id="user" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('user.list') }}">Listes des collaborateurs</a></li>
                         </ul> 
+                        <ul id="user" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('user.new') }}">Créer un collaborateur</a></li>
+                        </ul> 
                     </li>
 
                     
@@ -183,10 +195,10 @@
                     </li>
                     <li class="sidebar-item">
                         <a data-bs-target="#produit" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                            <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Produit</span>
+                            <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Produits</span>
                         </a>
                         <ul id="produit" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('produit.list') }}">Listes des produits</a></li>
+                            <li class="sidebar-item "><a class="sidebar-link" href="{{ path('produit.list') }}">Listes des produits</a></li>
                         </ul>
                         <ul id="produit" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('produit.new') }}">Créer un produit</a></li>
@@ -198,6 +210,9 @@
                         </a>
                         <ul id="entrepots" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('entrepots.list') }}">Listes des entrepots</a></li>
+                        </ul>
+                        <ul id="entrepots" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('entrepots.new') }}">Créer un nouvel entrepot</a></li>
                         </ul> 
                     </li>
 
@@ -208,10 +223,13 @@
                         <ul id="bondecommande" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('bondecommande.list') }}">Listes des bon de commandes</a></li>
                         </ul> 
+                         <ul id="bondecommande" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('bondecommande.list') }}">Créer un bon de commande</a></li>
+                        </ul> 
                     </li>
 					
 				</ul>
-                            {# Dashboard items start #}
+                            {# Dashboard items stop #}
 
 
 				<div class="sidebar-cta">

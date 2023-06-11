@@ -28,3 +28,7 @@ services:
         arguments: ['@Symfony\Contracts\HttpClient\HttpClientInterface']
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    
+    # App\Form\ProduitType:
+    #     arguments:
+    #         $defaultImagePath: '%kernel.project_dir%/public/images/default.jpeg'

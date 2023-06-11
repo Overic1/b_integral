@@ -23,7 +23,7 @@ class FactureController extends AbstractController
         $this->security = $security;
     }
 
-    #[Route('/facture/list', name: 'facture.list')]
+    #[Route('/entreprise/facture/list', name: 'facture.list')]
     public function index(HttpClientInterface  $httpClient): Response
     {
         $user = $this->security->getUser();
@@ -101,7 +101,7 @@ class FactureController extends AbstractController
     }
 
 
-    #[Route('/facture/new', name: 'facture.new', methods: ['GET', 'POST'])]
+    #[Route('/entreprise/facture/new', name: 'facture.new', methods: ['GET', 'POST'])]
     public function create(Request $request, HttpClientInterface $httpClient): Response
     {
         // Créer le formulaire et l'associer à la requête
@@ -175,7 +175,7 @@ class FactureController extends AbstractController
             }
         }
         return $this->render('pages/facture/new.html.twig', [
-            'form' => $form->createView(),
+            // 'form' => $form->createView(),
         ]);
     }
 }

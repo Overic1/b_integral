@@ -11,6 +11,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
+
 class UserController extends AbstractController
 {
 
@@ -21,7 +23,7 @@ class UserController extends AbstractController
         $this->security = $security;
     }
 
-    #[Route('/user', name: 'user.list')]
+    #[Route('/entreprise/user', name: 'user.list')]
     public function index(HttpClientInterface  $httpClient): Response
     {
         $user = $this->security->getUser();
@@ -68,7 +70,7 @@ class UserController extends AbstractController
     }
 
 
-    #[Route('/user/new', name: 'user.new', methods: ['GET', 'POST'])]
+    #[Route('/entreprise/user/new', name: 'user.new', methods: ['GET', 'POST'])]
     public function create(Request $request, HttpClientInterface $httpClient): Response
     {
 

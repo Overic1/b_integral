@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
 class BanquecaisseController extends AbstractController
 {
 
@@ -27,7 +28,7 @@ class BanquecaisseController extends AbstractController
      * @param HttpClientInterface $httpClient
      * @return Response
      */
-    #[Route('/banque', name: 'banque.list')]
+    #[Route('/entreprise/banque', name: 'banque.list')]
     public function banquelist(HttpClientInterface  $httpClient): Response
     {
 
@@ -84,7 +85,7 @@ class BanquecaisseController extends AbstractController
      * @param HttpClientInterface $httpClient
      * @return Response
      */
-    #[Route('/caisse', name: 'caisse.list')]
+    #[Route('/entreprise/caisse', name: 'caisse.list')]
     public function listcaisse(HttpClientInterface  $httpClient): Response
     {
 
@@ -132,7 +133,7 @@ class BanquecaisseController extends AbstractController
 
 
 
-    #[Route('/banquecaisse/new', name: 'banquecaisse.new', methods: ['GET', 'POST'])]
+    #[Route('/entreprise/banquecaisse/new', name: 'banquecaisse.new', methods: ['GET', 'POST'])]
     public function create(Request $request, HttpClientInterface $httpClient): Response
     {
 

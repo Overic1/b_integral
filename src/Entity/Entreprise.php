@@ -368,11 +368,5 @@ class Entreprise implements UserInterface, PasswordAuthenticatedUserInterface
             // echo "Erreur lors de la création de la base de données : " . $e->getMessage();
         } 
     }
-
-    
-
- 
-
-
   
 }

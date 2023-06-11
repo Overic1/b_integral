@@ -2,10 +2,13 @@
 
 namespace App\Form;
 
+use Symfony\Component\Asset\PathPackage;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -14,8 +17,16 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class ProduitType extends AbstractType
 {
+    // private $defaultImagePath;
+
+    // public function __construct(string $defaultImagePath)
+    // {
+    //     $this->defaultImagePath = $defaultImagePath;
+    // }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        
         $builder
             ->add('label', TextType::class, [
                 'attr' => [
@@ -188,6 +199,29 @@ class ProduitType extends AbstractType
                 ]
             ])
 
+
+            ->add('image', FileType::class, [
+                // 'data' => 'images/default.jpeg',
+                // 'data_class' => null, 
+                'required'   => false,
+                // 'empty_data' => 'images/default.jpeg',
+                'label' => 'Image',
+                'attr' => [
+                    'class' => 'form-control'
+                ], 
+                'label_attr' => [   
+                'class' => 'form-label'
+            ],
+            
+                // 'data' => new File($options['default_image_path']),
+                'constraints' => [
+                    // new Assert\NotBlank(),
+                    new Assert\File([
+                        'maxSize' => '5M',
+                    ]),
+                ],
+            ])
+
             ->add('submit', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-primary w-100'
@@ -196,10 +230,12 @@ class ProduitType extends AbstractType
             ])
         ;
     }
-
+    
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
+            // 'data_class' => Produit::class,
+            // 'default_image_path' => $this->defaultImagePath,
             // Configure your form options here
         ]);
     }

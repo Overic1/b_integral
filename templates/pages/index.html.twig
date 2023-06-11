@@ -16,27 +16,28 @@
                 </span>
             </a>
 
-            <ul class="sidebar-nav">
-                <li class="sidebar-header">
-                    Pages
-                    					
-                </li>
+            	            {# Dashboard items start #}
+				<ul class="sidebar-nav">
+                    <li class="sidebar-header">
+                        Pages
+                                            
+                    </li>
 
-                <li class="sidebar-item active">
-                    <a class="sidebar-link" href="{{path('index')}}">
-                        <i class="align-middle" data-feather="sliders"></i>
-                        <span class="align-middle">
-                            Dashboard
-                        </span>
-                    </a>
-                </li>
+                    <li class="sidebar-item active">
+                        <a class="sidebar-link" href="{{path('index')}}">
+                            <i class="align-middle" data-feather="sliders"></i>
+                            <span class="align-middle">
+                                Dashboard
+                            </span>
+                        </a>
+                    </li>
 
-                <li class="sidebar-header">
-                    MagmaERP
-                    					
-                </li>
+                    <li class="sidebar-header">
+                        MagmaERP
+                                            
+                    </li>
                 
-                 <li class="sidebar-item">
+                    <li class="sidebar-item">
                         <a data-bs-target="#pages" data-bs-toggle="collapse" class="sidebar-link collapsed">
                             <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Factures</span>
                             <i class="align-middle" data-feather="chevron-right"></i>
@@ -44,12 +45,15 @@
                         <ul id="pages" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('facture.list') }}">Listes des factures</a></li>
                         </ul>
+                        <ul id="pages" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('facture.new') }}">Créer une facture</a></li>
+                        </ul>
                     </li>
 
                      <li class="sidebar-header">
                         CareCONCEPT
                     </li>
-
+                    
                     <li class="sidebar-item">
                         <a data-bs-target="#tiers" data-bs-toggle="collapse" class="sidebar-link collapsed">
                             <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Tiers</span>
@@ -67,6 +71,9 @@
 						<ul id="tiers" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('fournisseurs.list') }}">Listes des fournisseurs</a></li>
                         </ul>
+                        <ul id="tiers" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('tiers.new') }}">Créer un nouveau client</a></li>
+                        </ul>
                     </li>
                     
                     <li class="sidebar-header">
@@ -74,7 +81,7 @@
                     </li>
                     <li class="sidebar-item">
                         <a data-bs-target="#banquecaisse" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                            <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Banque et caisse</span>
+                            <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Banques et caisses</span>
                             <i class="align-middle" data-feather="chevron-right"></i>
                         </a>
                         <ul id="banquecaisse" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
@@ -82,6 +89,9 @@
                         </ul> 
                         <ul id="banquecaisse" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('caisse.list') }}">Caisse</a></li>
+                        </ul>
+                        <ul id="banquecaisse" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('banquecaisse.new') }}">Crééer une banque/caisse</a></li>
                         </ul>
                     </li>
 
@@ -96,6 +106,9 @@
                         <ul id="proposition" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('proposition.list') }}">Listes des propositions commercials</a></li>
                         </ul> 
+                        <ul id="proposition" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('proposition.new') }}">Créer une propositions commercials</a></li>
+                        </ul> 
                     </li>
 
                     <li class="sidebar-header">
@@ -109,21 +122,23 @@
                         <ul id="user" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('user.list') }}">Listes des collaborateurs</a></li>
                         </ul> 
+                        <ul id="user" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('user.new') }}">Créer un collaborateur</a></li>
+                        </ul> 
                     </li>
 
-                    
                     <li class="sidebar-header">
                        CashLINE
                                             
                     </li>
                     <li class="sidebar-item">
                         <a data-bs-target="#produit" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                            <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Produit</span>
+                            <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Produits</span>
                         </a>
                         <ul id="produit" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('produit.list') }}">Listes des produits</a></li>
                         </ul>
-                         <ul id="produit" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                        <ul id="produit" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('produit.new') }}">Créer un produit</a></li>
                         </ul>
                     </li>
@@ -133,6 +148,9 @@
                         </a>
                         <ul id="entrepots" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('entrepots.list') }}">Listes des entrepots</a></li>
+                        </ul>
+                        <ul id="entrepots" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('entrepots.new') }}">Créer un nouvel entrepot</a></li>
                         </ul> 
                     </li>
 
@@ -143,119 +161,13 @@
                         <ul id="bondecommande" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('bondecommande.list') }}">Listes des bon de commandes</a></li>
                         </ul> 
+                         <ul id="bondecommande" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('bondecommande.list') }}">Créer un bon de commande</a></li>
+                        </ul> 
                     </li>
-
-                    
-
-                    
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{path('profile')}}">
-                        <i class="align-middle" data-feather="user"></i>
-                        <span class="align-middle">
-                            Profile
-                        </span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="pages-sign-in.html">
-                        <i class="align-middle" data-feather="log-in"></i>
-                        <span class="align-middle">
-                            Sign In
-                        </span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="pages-sign-up.html">
-                        <i class="align-middle" data-feather="user-plus"></i>
-                        <span class="align-middle">
-                            Sign Up
-                        </span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="pages-blank.html">
-                        <i class="align-middle" data-feather="book"></i>
-                        <span class="align-middle">
-                            Blank
-                        </span>
-                    </a>
-                </li>
-
-                <li class="sidebar-header">
-                    Factures 					
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ path('facture.list') }}">
-                        <i class="align-middle" data-feather="square"></i>
-                        <span class="align-middle">
-                            Liste des factures
-                        </span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="ui-forms.html">
-                        <i class="align-middle" data-feather="check-square"></i>
-                        <span class="align-middle">
-                            Forms
-                        </span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="ui-cards.html">
-                        <i class="align-middle" data-feather="grid"></i>
-                        <span class="align-middle">
-                            Cards
-                        </span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="ui-typography.html">
-                        <i class="align-middle" data-feather="align-left"></i>
-                        <span class="align-middle">
-                            Typography
-                        </span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="icons-feather.html">
-                        <i class="align-middle" data-feather="coffee"></i>
-                        <span class="align-middle">
-                            Icons
-                        </span>
-                    </a>
-                </li>
-
-                <li class="sidebar-header">
-                    Plugins & Addons
-                    					
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="charts">
-                        <i class="align-middle" data-feather="bar-chart-2"></i>
-                        <span class="align-middle">
-                            Charts
-                        </span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="maps-google.html">
-                        <i class="align-middle" data-feather="map"></i>
-                        <span class="align-middle">
-                            Maps
-                        </span>
-                    </a>
-                </li>
-            </ul>
+					
+				</ul>
+                            {# Dashboard items stop #}
 
             <div class="sidebar-cta">
                 <div class="sidebar-cta-content">
@@ -363,9 +275,9 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ path('security.login') }}">Connexion</a>
                                         </li>
-                                        <li class="nav-item">
+                                        {# <li class="nav-item">
                                             <a class="nav-link" href="{{ path('security.login') }}">Inscription</a>
-                                        </li>
+                                        </li> #}
                                         {% endif %}
                 
                                 </ul>
@@ -384,137 +296,431 @@
                                     Dashboard
                                 </h1>
 
-                                <div class="row">
-                                    <div class="col-xl-6 col-xxl-5 d-flex">
-                                        <div class="w-100">
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <div class="row">
-                                                                <div class="col mt-0">
-                                                                    <h5 class="card-title">
-                                                                        Factures
-                                                                    </h5>
-                                                                </div>
-
-                                                                <div class="col-auto">
-                                                                    <div class="stat text-primary">
-                                                                        <i class="align-middle" data-feather="truck"></i>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <h1 class="mt-1 mb-3">
-                                                                {% if app.user %}
-                                                                    {{ jsonCount }}
-                                                                {% endif %}
-                                                            </h1>
-                                                            <div class="mb-0">
-                                                                <span class="text-danger">
-                                                                    <i class="mdi mdi-arrow-bottom-right"></i>
-                                                                    -3.65% 
-                                                                </span>
-                                                                <span class="text-muted">
-                                                                    Since last week
-                                                                </span>
-                                                            </div>
-                                                        </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <a class="text-decoration-none" href="{{ path('bondecommande.list') }}">
+                                                <div class="row">
+                                                    <div class="col mt-0">
+                                                        <h5 class="card-title">
+                                                            Bons  de commandes
+                                                        </h5>
                                                     </div>
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <div class="row">
-                                                                <div class="col mt-0">
-                                                                    <h5 class="card-title">
-                                                                        Visitors
-                                                                    </h5>
-                                                                </div>
 
-                                                                <div class="col-auto">
-                                                                    <div class="stat text-primary">
-                                                                        <i class="align-middle" data-feather="users"></i>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <h1 class="mt-1 mb-3">
-                                                                14.212
-                                                            </h1>
-                                                            <div class="mb-0">
-                                                                <span class="text-success">
-                                                                    <i class="mdi mdi-arrow-bottom-right"></i>
-                                                                    5.25% 
-                                                                </span>
-                                                                <span class="text-muted">
-                                                                    Since last week
-                                                                </span>
-                                                            </div>
+                                                    <div class="col-auto">
+                                                        <div class="stat text-primary">
+                                                            <i class="align-middle" data-feather="dollar-sign"></i>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-6">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <div class="row">
-                                                                <div class="col mt-0">
-                                                                    <h5 class="card-title">
-                                                                        Earnings
-                                                                    </h5>
-                                                                </div>
+                                                <h1 class="mt-1 mb-3">
+                                                    {% if app.user %}
+                                                        {{ BonCount }}
+                                                    {% endif %}
+                                                </h1>
+                                                <div class="mb-0">
+                                                    {# <span class="text-success">
+                                                        <i class="mdi mdi-arrow-bottom-right"></i>
+                                                        6.65% 
+                                                    </span>
+                                                    <span class="text-muted">
+                                                        Since last week
+                                                    </span> #}
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <a class="text-decoration-none" href="{{ path('entrepots.list') }}">
+                                                <div class="row">
+                                                    <div class="col mt-0">
+                                                        <h5 class="card-title">
+                                                            Entrepots
+                                                        </h5>
+                                                    </div>
 
-                                                                <div class="col-auto">
-                                                                    <div class="stat text-primary">
-                                                                        <i class="align-middle" data-feather="dollar-sign"></i>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <h1 class="mt-1 mb-3">
-                                                                $21.300
-                                                            </h1>
-                                                            <div class="mb-0">
-                                                                <span class="text-success">
-                                                                    <i class="mdi mdi-arrow-bottom-right"></i>
-                                                                    6.65% 
-                                                                </span>
-                                                                <span class="text-muted">
-                                                                    Since last week
-                                                                </span>
-                                                            </div>
+                                                    <div class="col-auto">
+                                                        <div class="stat text-primary">
+                                                            <i class="align-middle" data-feather="shopping-cart"></i>
                                                         </div>
                                                     </div>
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <div class="row">
-                                                                <div class="col mt-0">
-                                                                    <h5 class="card-title">
-                                                                        Orders
-                                                                    </h5>
-                                                                </div>
+                                                </div>
+                                                <h1 class="mt-1 mb-3">
+                                                    {% if app.user %}
+                                                        {{ EnCount }}
+                                                    {% endif %}
+                                                </h1>
+                                                <div class="mb-0">
+                                                    {# <span class="text-danger">
+                                                        <i class="mdi mdi-arrow-bottom-right"></i>
+                                                        -2.25% 
+                                                    </span>
+                                                    <span class="text-muted">
+                                                        Since last week
+                                                    </span> #}
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <a class="text-decoration-none" href="{{ path('clients.list') }}">
+                                                <div class="row">
+                                                    <div class="col mt-0">
+                                                        <h5 class="card-title">
+                                                            Clients
+                                                        </h5>
+                                                    </div>
 
-                                                                <div class="col-auto">
-                                                                    <div class="stat text-primary">
-                                                                        <i class="align-middle" data-feather="shopping-cart"></i>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <h1 class="mt-1 mb-3">
-                                                                64
-                                                            </h1>
-                                                            <div class="mb-0">
-                                                                <span class="text-danger">
-                                                                    <i class="mdi mdi-arrow-bottom-right"></i>
-                                                                    -2.25% 
-                                                                </span>
-                                                                <span class="text-muted">
-                                                                    Since last week
-                                                                </span>
-                                                            </div>
+                                                    <div class="col-auto">
+                                                        <div class="stat text-primary">
+                                                            <i class="align-middle" data-feather="dollar-sign"></i>
                                                         </div>
+                                                    </div>
+                                                </div>
+                                                <h1 class="mt-1 mb-3">
+                                                     {% if app.user %}
+                                                                    {{ countclient }}
+                                                                {% endif %}
+                                                </h1>
+                                                <div class="mb-0">
+                                                    {# <span class="text-success">
+                                                        <i class="mdi mdi-arrow-bottom-right"></i>
+                                                        6.65% 
+                                                    </span>
+                                                    <span class="text-muted">
+                                                        Since last week
+                                                    </span> #}
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <a class="text-decoration-none" href="{{ path('caisse.list') }}">
+                                                <div class="row">
+                                                    <div class="col mt-0">
+                                                        <h5 class="card-title">
+                                                            Caisses
+                                                        </h5>
+                                                    </div>
+
+                                                    <div class="col-auto">
+                                                        <div class="stat text-primary">
+                                                            <i class="align-middle" data-feather="shopping-cart"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h1 class="mt-1 mb-3">
+                                                    64
+                                                </h1>
+                                                <div class="mb-0">
+                                                    {# <span class="text-danger">
+                                                        <i class="mdi mdi-arrow-bottom-right"></i>
+                                                        -2.25% 
+                                                    </span>
+                                                    <span class="text-muted">
+                                                        Since last week
+                                                    </span> #}
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <a class="text-decoration-none" href="{{ path('banque.list') }}">
+                                                <div class="row">
+                                                    <div class="col mt-0">
+                                                        <h5 class="card-title">
+                                                            Banques
+                                                        </h5>
+                                                    </div>
+
+                                                    <div class="col-auto">
+                                                        <div class="stat text-primary">
+                                                            <i class="align-middle" data-feather="dollar-sign"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h1 class="mt-1 mb-3">
+                                                    {% if app.user %}
+                                                                    {{ BanCaiCount }}
+                                                                {% endif %}
+                                                </h1>
+                                                <div class="mb-0">
+                                                    {# <span class="text-success">
+                                                        <i class="mdi mdi-arrow-bottom-right"></i>
+                                                        6.65% 
+                                                    </span>
+                                                    <span class="text-muted">
+                                                        Since last week
+                                                    </span> #}
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <a class="text-decoration-none" href="{{ path('prospects.list') }}">
+                                                <div class="row">
+                                                    <div class="col mt-0">
+                                                        <h5 class="card-title">
+                                                            Prospects
+                                                        </h5>
+                                                    </div>
+
+                                                    <div class="col-auto">
+                                                        <div class="stat text-primary">
+                                                            <i class="align-middle" data-feather="shopping-cart"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h1 class="mt-1 mb-3">
+                                                    {% if app.user %}
+                                                                    {{ countprospect }}
+                                                                {% endif %}
+                                                </h1>
+                                                <div class="mb-0">
+                                                    {# <span class="text-danger">
+                                                        <i class="mdi mdi-arrow-bottom-right"></i>
+                                                        -2.25% 
+                                                    </span>
+                                                    <span class="text-muted">
+                                                        Since last week
+                                                    </span> #}
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <a class="text-decoration-none" href="{{ path('fournisseurs.list') }}">
+                                                <div class="row">
+                                                    <div class="col mt-0">
+                                                        <h5 class="card-title">
+                                                            Fournisseurs
+                                                        </h5>
+                                                    </div>
+
+                                                    <div class="col-auto">
+                                                        <div class="stat text-primary">
+                                                            <i class="align-middle" data-feather="dollar-sign"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h1 class="mt-1 mb-3">
+                                                    {% if app.user %}
+                                                                    {{ countfour }}
+                                                                {% endif %}
+                                                </h1>
+                                                <div class="mb-0">
+                                                    {# <span class="text-success">
+                                                        <i class="mdi mdi-arrow-bottom-right"></i>
+                                                        6.65% 
+                                                    </span>
+                                                    <span class="text-muted">
+                                                        Since last week
+                                                    </span> #}
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <a class="text-decoration-none" href="{{ path('tiers.list') }}">
+                                                <div class="row">
+                                                    <div class="col mt-0">
+                                                        <h5 class="card-title">
+                                                            Tiers
+                                                        </h5>
+                                                    </div>
+
+                                                    <div class="col-auto">
+                                                        <div class="stat text-primary">
+                                                            <i class="align-middle" data-feather="shopping-cart"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h1 class="mt-1 mb-3">
+                                                     {% if app.user %}
+                                                                    {{ TiersCount }}
+                                                                {% endif %}
+                                                </h1>
+                                                <div class="mb-0">
+                                                    {# <span class="text-danger">
+                                                        <i class="mdi mdi-arrow-bottom-right"></i>
+                                                        -2.25% 
+                                                    </span>
+                                                    <span class="text-muted">
+                                                        Since last week
+                                                    </span> #}
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <a class="text-decoration-none" href="{{ path('facture.list') }}">
+                                                <div class="row">
+                                                    <div class="col mt-0">
+                                                        <h5 class="card-title">
+                                                            Factures
+                                                        </h5>
+                                                    </div>
+
+                                                    <div class="col-auto">
+                                                        <div class="stat text-primary">
+                                                            <i class="align-middle" data-feather="truck"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h1 class="mt-1 mb-3">
+                                                    {% if app.user %}
+                                                        {{ factCount }}
+                                                    {% endif %}
+                                                </h1>
+                                                <div class="mb-0">
+                                                    <span class="text-danger">
+                                                        <i class="mdi mdi-arrow-bottom-right"></i>
+                                                         {% if app.user %}
+                                                        {{ factNonPaye }}
+                                                    {% endif %}
+                                                    </span>
+                                                    <span class="text-muted">
+                                                        factures impayées
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <a class="text-decoration-none" href="{{ path('produit.list') }}">
+                                                <div class="row">
+                                                    <div class="col mt-0">
+                                                        <h5 class="card-title">
+                                                            Produits & Services 
+                                                        </h5>
+                                                    </div>
+
+                                                    <div class="col-auto">
+                                                        <div class="stat text-primary">
+                                                            <i class="align-middle" data-feather="users"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h1 class="mt-1 mb-3">
+                                                    {% if app.user %}
+                                                        {{ ProCount }}
+                                                    {% endif %}
+                                                </h1>
+                                                <div class="mb-0">
+                                                    <span class="text-danger">
+                                                        <i class="mdi mdi-arrow-bottom-right"></i> 
+                                                         {% if app.user %}
+                                                        {{ nbProNoStock }}
+                                                    {% endif %}
+                                                    </span>
+                                                    <span class="text-muted">
+                                                        produits en rupture de stock
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <a class="text-decoration-none" href="{{ path('proposition.list') }}">
+                                                <div class="row">
+                                                    <div class="col mt-0">
+                                                        <h5 class="card-title">
+                                                            Propositions
+                                                        </h5>
+                                                    </div>
+
+                                                    <div class="col-auto">
+                                                        <div class="stat text-primary">
+                                                            <i class="align-middle" data-feather="dollar-sign"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h1 class="mt-1 mb-3">
+                                                        {% if app.user %}
+                                                        {{ ProComCount }}
+                                                    {% endif %}
+                                                </h1>
+                                                <div class="mb-0">
+                                                    {# <span class="text-success">
+                                                        <i class="mdi mdi-arrow-bottom-right"></i>
+                                                        6.65% 
+                                                    </span>
+                                                    <span class="text-muted">
+                                                        Since last week
+                                                    </span> #}
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <a class="text-decoration-none" href="{{ path('user.list') }}">
+                                            <div class="row">
+                                                <div class="col mt-0">
+                                                    <h5 class="card-title">
+                                                        Collaborateurs
+                                                    </h5>
+                                                </div>
+
+                                                <div class="col-auto">
+                                                    <div class="stat text-primary">
+                                                        <i class="align-middle" data-feather="shopping-cart"></i>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <h1 class="mt-1 mb-3">
+                                                    {% if app.user %}
+                                                        {{ CollCount }}
+                                                    {% endif %}
+                                            </h1>
+                                            <div class="mb-0">
+                                                {# <span class="text-danger">
+                                                    <i class="mdi mdi-arrow-bottom-right"></i>
+                                                    -2.25% 
+                                                </span>
+                                                <span class="text-muted">
+                                                    Since last week
+                                                </span> #}
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <div class="col-xl-6 col-xxl-7">
+                                </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-xl-12 col-xxl-7">
                                         <div class="card flex-fill w-100">
                                             <div class="card-header">
 
@@ -527,9 +733,9 @@
                                                     <canvas id="chartjs-dashboard-line"></canvas>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                        </div>                               
+                                
+                            </div>
 
                                 <div class="row">
                                     <div class="col-12 col-md-6 col-xxl-3 d-flex order-2 order-xxl-3">

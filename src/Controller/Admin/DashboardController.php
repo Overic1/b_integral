@@ -121,7 +121,7 @@ class DashboardController extends AbstractDashboardController
             } catch (\Exception $e) {
                 $this->addFlash('error', 'Erreur lors de la création du dossier de destination : ' . $e->getMessage());
                 // return $this->redirectToRoute('admin');
-            }
+            }   
             
             //Copier le fichier d'installation vers la destination
             try {

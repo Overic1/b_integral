@@ -99,8 +99,8 @@
 						</div>
 					</div>
 				</div>
-                     
-                       {# Dashboard items start #}
+
+			     {# Dashboard items start #}
 				<ul class="sidebar-nav">
                     <li class="sidebar-header">
                         Pages
@@ -138,7 +138,7 @@
                         CareCONCEPT
                     </li>
                     
-                    <li class="sidebar-item active">
+                    <li class="sidebar-item">
                         <a data-bs-target="#tiers" data-bs-toggle="collapse" class="sidebar-link collapsed">
                             <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Tiers</span>
                             <i class="align-middle" data-feather="chevron-right"></i>
@@ -156,7 +156,7 @@
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('fournisseurs.list') }}">Listes des fournisseurs</a></li>
                         </ul>
                         <ul id="tiers" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                            <li class="sidebar-item active"><a class="sidebar-link" href="{{ path('tiers.new') }}">Créer un nouveau client</a></li>
+                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('tiers.new') }}">Créer un nouveau client</a></li>
                         </ul>
                     </li>
                     
@@ -239,7 +239,7 @@
                         </ul> 
                     </li>
 
-                    <li class="sidebar-item">
+                    <li class="sidebar-item active">
                         <a data-bs-target="#bondecommande" data-bs-toggle="collapse" class="sidebar-link collapsed">
                             <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Bons  de commandes</span>
                         </a>
@@ -247,12 +247,13 @@
                             <li class="sidebar-item"><a class="sidebar-link" href="{{ path('bondecommande.list') }}">Listes des bon de commandes</a></li>
                         </ul> 
                          <ul id="bondecommande" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                            <li class="sidebar-item"><a class="sidebar-link" href="{{ path('bondecommande.list') }}">Créer un bon de commande</a></li>
+                            <li class="sidebar-item active"><a class="sidebar-link" href="{{ path('bondecommande.list') }}">Créer un bon de commande</a></li>
                         </ul> 
                     </li>
 					
 				</ul>
                             {# Dashboard items stop #}
+
 
 
 				<div class="sidebar-cta">
@@ -367,7 +368,7 @@
 				<div class="container-fluid p-0">
 
 					<div class="mb-3">
-						<h1 class="h3 d-inline align-middle">Nouveau Client</h1><a class="badge bg-primary ms-2" href="https://adminkit.io/pricing/"
+						<h1 class="h3 d-inline align-middle">Nouveau produit</h1><a class="badge bg-primary ms-2" href="https://adminkit.io/pricing/"
 							target="_blank">Pro Component <i class="fas fa-fw fa-external-link-alt"></i></a>
 					</div>
 
@@ -381,74 +382,100 @@
 							
 							</div>
 						</div>
-						 	{% for message in app.flashes('success') %}
-                                <div class=" alert alert-success mt-4">
-                                    {{ message }}
-                                </div>
-                            {% endfor %}
 						<div class="col-md-12">
 							<div class="card">
-							
 								<div class="card-body">
+									{% for message in app.flashes('error') %}
+										<div class=" alert alert-success mt-4">
+											{{ message }}
+										</div>
+									{% endfor %}
 									{# pages/user/create.html.twig #}
                                     <div class="container ">
-                                        <h2>Formulaire d'enregistrement des clients</h2>
-                                        {# <div class="row g-3"> #}
+                                        <h2>Formulaire d'enregistrement des produits</h2>
                                             {{ form_start(form,{ 'attr': {'class': 'row g-3'} }) }}
-                                            <div class="col-md-6">
-                                                {{ form_label(form.nom) }}
-                                                {{ form_widget(form.nom) }}
+                                            <div class="col-md-3">
+                                                {{ form_label(form.label) }}
+                                                {{ form_widget(form.label) }}
                                                 <div class="form-error">
-                                                    {{ form_errors(form.nom) }}
+                                                    {{ form_errors(form.label) }}
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                {{ form_label(form.prenom) }}
-                                                {{ form_widget(form.prenom) }}
+                                            <div class="col-md-3">
+                                                {{ form_label(form.description) }}
+                                                {{ form_widget(form.description) }}
                                                 <div class="form-error">
-                                                    {{ form_errors(form.prenom) }}
+                                                    {{ form_errors(form.description) }}
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                {{ form_label(form.email) }}
-                                                {{ form_widget(form.email) }}
+                                            <div class="col-md-3">
+                                                {{ form_label(form.barcode) }}
+                                                {{ form_widget(form.barcode) }}
                                                 <div class="form-error">
-                                                    {{ form_errors(form.email) }}
+                                                    {{ form_errors(form.barcode) }}
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                {{ form_label(form.phone) }}
-                                                {{ form_widget(form.phone) }}
+                                            <div class="col-md-3">
+                                                {{ form_label(form.price) }}
+                                                {{ form_widget(form.price) }}
                                                 <div class="form-error">
-                                                    {{ form_errors(form.phone) }}
+                                                    {{ form_errors(form.price) }}
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                {{ form_label(form.address) }}
-                                                {{ form_widget(form.address) }}
+                                            <div class="col-md-3">
+                                                {{ form_label(form.price_ttc) }}
+                                                {{ form_widget(form.price_ttc) }}
                                                 <div class="form-error">
-                                                    {{ form_errors(form.address) }}
+                                                    {{ form_errors(form.price_ttc) }}
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                {{ form_label(form.tva_assuj) }}
-                                                {{ form_widget(form.tva_assuj) }}
+                                            <div class="col-md-3">
+                                                {{ form_label(form.status_buy) }}
+                                                {{ form_widget(form.status_buy) }}
                                                 <div class="form-error">
-                                                    {{ form_errors(form.tva_assuj) }}
+                                                    {{ form_errors(form.status_buy) }}
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                {{ form_label(form.civility_id) }}
-                                                {{ form_widget(form.civility_id) }}
+                                            <div class="col-md-3">
+                                                {{ form_label(form.status) }}
+                                                {{ form_widget(form.status) }}
                                                 <div class="form-error">
-                                                    {{ form_errors(form.civility_id) }}
+                                                    {{ form_errors(form.status) }}
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                {{ form_label(form.type) }}
-                                                {{ form_widget(form.type) }}
+                                            <div class="col-md-3">
+                                                {{ form_label(form.tva_tx) }}
+                                                {{ form_widget(form.tva_tx) }}
                                                 <div class="form-error">
-                                                    {{ form_errors(form.type) }}
+                                                    {{ form_errors(form.tva_tx) }}
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-3">
+                                                {{ form_label(form.options_taxgroup) }}
+                                                {{ form_widget(form.options_taxgroup) }}
+                                            <div class="form-error">
+                                                {{ form_errors(form.options_taxgroup) }}
+                                            </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                {{ form_label(form.options_taxspecific) }}
+                                                {{ form_widget(form.options_taxspecific) }}
+                                                <div class="form-error">
+                                                    {{ form_errors(form.options_taxspecific) }}
+                                                </div>
+                                            </div>                                          
+                                            <div class="col-md-3">
+                                                {{ form_label(form.options_qty) }}
+                                                {{ form_widget(form.options_qty) }}
+                                                <div class="form-error">
+                                                    {{ form_errors(form.options_qty) }}
+                                                </div>
+                                            </div>
+                                             <div class="col-md-6">
+                                                {{ form_label(form.image) }}
+                                                {{ form_widget(form.image,{'attr': {'value': '/images/default.jpeg'}}) }}
+                                                <div class="form-error">
+                                                    {{ form_errors(form.image) }}
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -496,7 +523,7 @@
 
 	<script src="{{asset('assets/dist/js/app.js')}}"></script>
 
-<script>
+	<script>
   document.addEventListener("DOMContentLoaded", function(event) { 
     setTimeout(function(){
       if(localStorage.getItem('popState') !== 'shown'){

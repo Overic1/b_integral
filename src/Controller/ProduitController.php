@@ -9,8 +9,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Filesystem\Filesystem;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
+
 
 class ProduitController extends AbstractController
 {
@@ -22,7 +31,7 @@ class ProduitController extends AbstractController
         $this->security = $security;
     }
 
-    #[Route('/produit/list', name: 'produit.list')]
+    #[Route('/entreprise/produit/list', name: 'produit.list')]
     public function index(HttpClientInterface  $httpClient): Response
     {
         $user = $this->security->getUser();
@@ -64,8 +73,8 @@ class ProduitController extends AbstractController
                 }
                 
                 if (isset($produitData[$i]['array_options']['options_url_image'])) {
-                    // $img = $produitData[$i]['array_options']['options_url_image'];
-                    $img = 1;
+                    $img = $produitData[$i]['array_options']['options_url_image'];
+                    // $img = 1;
                 } else {
                     $img = 1;
                 }
@@ -96,13 +105,18 @@ class ProduitController extends AbstractController
     }
     
 
-    #[Route('/produit/new', name: 'produit.new', methods: ['GET', 'POST'])]
-    public function create(Request $request, HttpClientInterface $httpClient): Response
+    #[Route('/entreprise/produit/new', name: 'produit.new', methods: ['GET', 'POST'])]
+        
+    public function create(
+        Request$request, 
+        HttpClientInterface $httpClient, 
+        EntityManagerInterface $manager, 
+        KernelInterface $kernel
+    ): Response
     {
-        // Créer le formulaire et l'associer à la requête
+
         $form = $this->createForm(ProduitType::class);
         $form->handleRequest($request);
-
 
         $user = $this->security->getUser();
         $apiKey = '';
@@ -112,9 +126,11 @@ class ProduitController extends AbstractController
             $apiKey = $user->getApiKey();
             $url = $user->getBaseUrl();
             $codeEnseigne = $user->getCodeEntreprise();
+            $entrepriseId = $user->getId();
         }
+
+        $entreprise = $manager->getRepository(Entreprise::class)->find($entrepriseId);
         
-        // $codeEnseigne = "RXUX";
         
         $randomNumber = rand(100000, 999999);
         $ref = $codeEnseigne . "-" .'PT'. '-' . $randomNumber; 
@@ -124,6 +140,44 @@ class ProduitController extends AbstractController
             // Récupérer les données du formulaire
             $formData = $form->getData();
 
+            $imageFile = $form->get('image')->getData();
+
+            if ($imageFile) {
+                // Générez un nom de fichier unique
+                $fileName = md5(uniqid()) . '.' . $imageFile->guessExtension();
+
+                $destination = $kernel->getProjectDir() . '/' .
+                str_replace(' ', '', strtolower($entreprise->getInstallation()->getSousDomaine())) . '.' .
+                str_replace(' ', '', strtolower($entreprise->getInstallation()->getDomaine())) . '/htdocs/' .
+                str_replace(' ', '', strtolower($entreprise->getNom())) . '/Documents';
+
+                // Déplacez le fichier vers le dossier de destination
+                // $destination = $this->getParameter('kernel.project_dir') . '/' . $destination;
+                $imageFile->move($destination, $fileName);
+                
+            }
+            // else{
+               
+            //     $defaultImagePath = $this->getParameter('kernel.project_dir') . '/public/images/default.jpg';
+            //     $fileName = 'default.jpg';
+            //     $imageFile = new File($defaultImagePath);
+               
+                
+            //     // Générez un nom de fichier unique
+            //     $fileName = md5(uniqid()) . '.' . $imageFile->guessExtension();
+
+            //     $destination = $kernel->getProjectDir() . '/' .
+            //     str_replace(' ', '', strtolower($entreprise->getInstallation()->getSousDomaine())) . '.' .
+            //     str_replace(' ', '', strtolower($entreprise->getInstallation()->getDomaine())) . '/htdocs/' .
+            //     str_replace(' ', '', strtolower($entreprise->getNom())) . '/Documents';
+
+            //     // Copier le fichier vers le dossier de destination
+               
+            //     $filesystem = new Filesystem();
+            //     $filesystem->copy($defaultImagePath, $destination . '/' . $fileName);
+
+            // }
+            
             // Construire le tableau des données à envoyer à l'API
             $produitData = [
                 "label" => $formData['label'],
@@ -138,14 +192,13 @@ class ProduitController extends AbstractController
                 "tva_tx" => $formData['tva_tx'],
                 // "stock_reel" => $formData['stock_reel'],
                 "array_options" => [
-                    // "options_taxgroup" => $formData['options_taxgroup'],
-                    // "options_taxspecific" => $formData['options_taxspecific'],
                     "options_qty" => $formData['options_qty'],
-                    // "options_categories" => "id_categorie",
-                    // "options_url_image" => "valeur de img"
+                    "options_url_image" => $fileName,
                 ]
             ];
             // dd($produitData);
+            // dd($fileName);
+            
                 try {
         
                     // Envoyer la requête POST à l'API pour créer le produit

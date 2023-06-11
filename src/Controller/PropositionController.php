@@ -6,8 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Entreprise;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+
+
 
 class PropositionController extends AbstractController
 {
@@ -19,7 +22,7 @@ class PropositionController extends AbstractController
         $this->security = $security;
     }
 
-    #[Route('/proposition/list', name: 'proposition.list')]
+    #[Route('/entreprise/proposition/list', name: 'proposition.list')]
     public function index(HttpClientInterface  $httpClient): Response
     {
 
@@ -93,5 +96,52 @@ class PropositionController extends AbstractController
         return $this->render('pages/proposition/list.html.twig', [
             'data' => $data
         ]);
+    }
+
+    #[Route('/entreprise/proposition/new', name: 'proposition.new', methods: ['GET', 'POST'])]
+    public function create(Request $request, HttpClientInterface $httpClient): Response
+    {
+
+        // Envoyer la requête POST à l'API pour créer l'utilisateur
+        $user = $this->security->getUser();
+        $apiKey = '';
+        $url = '';
+
+        if ($user instanceof Entreprise) {
+            $apiKey = $user->getApiKey();
+            $url = $user->getBaseUrl();
+        }
+
+        // // Récupérer les données fournies par l'utilisateur
+        $libelle = $request->request->get('libelle');
+        $description = $request->request->get('description');
+        $lieu = $request->request->get('lieu');
+        $statut = $request->request->get('statut');
+
+        // Construire le tableau des données à envoyer à l'API
+        $entrepotData = [
+            'libelle' => $libelle,
+            'description' => $description,
+            'lieu' => $lieu,
+            'statut' => $statut
+        ];
+
+        $response = $httpClient->request('POST', $url . 'index.php/warehouses' . '?DOLAPIKEY=' . $apiKey, [
+            'json' => $entrepotData
+        ]);
+
+        $statusCode = $response->getStatusCode();
+
+        // Traiter la réponse de l'API
+        if ($statusCode === 200) {
+            // Utilisateur créé avec succès
+            $this->addFlash(
+                'success',
+                'L\'enregistrement a été éffectué avec succès !'
+            );
+            return $this->redirectToRoute('entrepots.list');
+        }
+
+        return $this->render('pages/entrepot/new.html.twig');
     }
 }

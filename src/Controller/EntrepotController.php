@@ -21,7 +21,7 @@ class EntrepotController extends AbstractController
         $this->security = $security;
     }
     
-    #[Route('/entrepot', name: 'entrepots.list')]
+    #[Route('/entreprise/entrepot', name: 'entrepots.list')]
     public function index(HttpClientInterface  $httpClient): Response
     {
 
@@ -71,7 +71,7 @@ class EntrepotController extends AbstractController
         ]);
     }
 
-    #[Route('/entrepot/new', name: 'entrepot.new', methods: ['GET', 'POST'])]
+    #[Route('/entreprise/entrepot/new', name: 'entrepots.new', methods: ['GET', 'POST'])]
     public function create(Request $request, HttpClientInterface $httpClient): Response
     {
 

@@ -12,6 +12,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
+
 class TiersController extends AbstractController
 {
 
@@ -28,7 +30,7 @@ class TiersController extends AbstractController
      * @param HttpClientInterface $httpClient
      * @return Response
      */
-    #[Route('/tiers/list', name: 'tiers.list')]
+    #[Route('/entreprise/tiers/list', name: 'tiers.list')]
     public function index(HttpClientInterface  $httpClient): Response
     {
         $user = $this->security->getUser();
@@ -80,7 +82,7 @@ class TiersController extends AbstractController
      * @param HttpClientInterface $httpClient
      * @return Response
      */
-    #[Route('/tiers/prospects/list', name: 'prospects.list')]
+    #[Route('/entreprise/tiers/prospects/list', name: 'prospects.list')]
     public function prospectslist(HttpClientInterface  $httpClient): Response
     {
         $user = $this->security->getUser();
@@ -136,7 +138,7 @@ class TiersController extends AbstractController
      * @param HttpClientInterface $httpClient
      * @return Response
      */
-    #[Route('/tiers/fournisseurs/list', name: 'fournisseurs.list')]
+    #[Route('/entreprise/tiers/fournisseurs/list', name: 'fournisseurs.list')]
     public function fournisseurslist(HttpClientInterface  $httpClient): Response
     {
         $user = $this->security->getUser();
@@ -191,7 +193,7 @@ class TiersController extends AbstractController
      * @param HttpClientInterface $httpClient
      * @return Response
      */
-    #[Route('/tiers/clients/list', name: 'clients.list')]
+    #[Route('/entreprise/tiers/clients/list', name: 'clients.list')]
     public function clientslist(HttpClientInterface  $httpClient): Response
     {
         $user = $this->security->getUser();
@@ -241,7 +243,7 @@ class TiersController extends AbstractController
 
 
     
-    #[Route('/tiers/new', name: 'tiers.new', methods: ['GET', 'POST'])]
+    #[Route('/entreprise/tiers/new', name: 'tiers.new', methods: ['GET', 'POST'])]
     public function create(Request $request, HttpClientInterface $httpClient): Response
     {
         // Créer le formulaire et l'associer à la requête

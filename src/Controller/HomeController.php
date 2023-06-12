@@ -116,27 +116,6 @@ class HomeController extends AbstractController
         } else {
             $CollCount = 0;
         }
-        // if ($statusCode6 === 200) {
-        //     $jsonData = $responseTiers->toArray();
-        //     $TiersCount = count($jsonData);
-        // } else {
-        //     $TiersCount = 0;
-        // }
-        if ($statusCode7 === 200) {
-            $jsonData = $responseProCom->toArray();
-            $ProComCount = count($jsonData);
-        } else {
-            $ProComCount = 0;
-        }
-        if ($statusCode8 === 200) {
-            $jsonData = $responseBanCai->toArray();
-            $BanCaiCount = count($jsonData);
-        } else {
-            $BanCaiCount = 0;
-        }
-
-        // *********************************
-        
         if ($statusCode6 === 200) {
             $jsonData = $responseTiers->toArray();
             $TiersCount = count($jsonData);
@@ -159,6 +138,32 @@ class HomeController extends AbstractController
                 }
             }
         }
+        if ($statusCode7 === 200) {
+            $jsonData = $responseProCom->toArray();
+            $ProComCount = count($jsonData);
+        } else {
+            $ProComCount = 0;
+        }
+        if ($statusCode8 === 200) {
+            $CaisseCount = 0;
+            $BanqueCount = 0;
+            $jsonData = $responseBanCai->toArray();
+            for ($i = 0; $i < count($jsonData); $i++) {
+                if($jsonData[$i]['type'] == 1 ){
+                    $BanqueCount = $BanqueCount + 1;
+                }
+                if($jsonData[$i]['type'] == 1 ){
+                    $CaisseCount = $CaisseCount + 1;
+                }
+            }
+        } else {
+            $CaissCount = 0;
+            $BanqueCount = 0;
+        }
+
+        // *********************************
+        
+        
 
         
         return $this->render('pages/index.html.twig', [
@@ -169,12 +174,13 @@ class HomeController extends AbstractController
             'CollCount' => $CollCount,
             'TiersCount' => $TiersCount,
             'ProComCount' => $ProComCount,
-            'BanCaiCount' => $BanCaiCount,
             'countprospect' => $countprospect,
             'countfour' => $countfour,
             'countclient' => $countclient,
             'factNonPaye' => $factNonPaye,
-            'nbProNoStock' => $nbProNoStock
+            'nbProNoStock' => $nbProNoStock,
+            'CaisseCount' => $CaisseCount,
+            'BanqueCount' => $BanqueCount
         ]);
     }
 

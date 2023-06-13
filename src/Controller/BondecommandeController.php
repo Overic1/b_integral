@@ -37,7 +37,7 @@ class BondecommandeController extends AbstractController
 
 
         // $bonResponse = $httpClient->request('GET', $url . 'index.php/warehouses' . '?DOLAPIKEY=' . $apiKey);
-        $bonResponse = $httpClient->request('GET', 'https://erp.net2all.online/enseignetesta/htdocs/api/index.php/orders/' . '?DOLAPIKEY=' . 'a3HIuxyzAB2ST4K5vw6cQRUde');
+        $bonResponse = $httpClient->request('GET', 'https://erp.net2all.online/enseignetesta/htdocs/api/index.php/warehouses/' . '?DOLAPIKEY=' . 'a3HIuxyzAB2ST4K5vw6cQRUde');
         $statusCode = $bonResponse->getStatusCode();
 
         $data = [];
@@ -46,17 +46,16 @@ class BondecommandeController extends AbstractController
 
             $bonData = $bonResponse->toArray();
 
-
+// dd($bonData);
             for ($i = 0; $i < count($bonData); $i++) {
                 
-                    $idbon = $bonData[$i]['ref'];
-                    $datebon = $bonData[$i]['date'];
+                    $ref = $bonData[$i]['ref'];
+                    $datebon = $bonData[$i]['date_creation'];
                     $total_ht = $bonData[$i]['total_ht'];
                     $total_tva = $bonData[$i]['total_tva'];
                     $total_ttc = $bonData[$i]['total_ttc'];
-                    // $paye = $bonData[$i]['paye'];
-                    $idcli = $bonData[$i]['socid'];
-                   
+                    $pays = $bonData[$i]['country'];
+                    
                     $datebon = strtotime($datebon); // Convertir la chaîne en horodatage
 
                     $dateOrigine = new \DateTime();
@@ -71,33 +70,21 @@ class BondecommandeController extends AbstractController
                     $total_tva = number_format($total_tva, 2, ',', ' ');
                     $total_ttc = number_format($total_ttc, 2, ',', ' ');
 
-                    // $clientResponse = $httpClient->request('GET', $url . 'index.php/thirdparties/' . $idcli . '?DOLAPIKEY=' . $apiKey);
-                    $clientResponse = $httpClient->request('GET', 'https://erp.net2all.online/enseignetesta/htdocs/api/index.php/thirdparties/' . $idcli . '?DOLAPIKEY=' . 'a3HIuxyzAB2ST4K5vw6cQRUde');
-                    $clientData = $clientResponse->toArray();
-                    $clientname = $clientData['name'];
-                    if(isset($clientData['array_options']['options_n_bpay'])){
-                        $bpay = $clientData['array_options']['options_n_bpay'];
-                    }
-                    $codeclient = $clientData['code_client'];
-                
+                   
                 $data[] =[
-                    'idbon' => $idbon,
-                    'client' => $clientname,
-                    'bpay' => $bpay,
-                    'codeclient' => $codeclient,
+                    'ref' => $ref,
                     'datebon' => $datebon,
                     'total_ht' => $total_ht,
                     'total_tva' => $total_tva,
                     'total_ttc' => $total_ttc,
-                
+                    'pays' => $pays
                 ];
             }
         }
  
         
         return $this->render('pages/bondecommande/list.html.twig', [
-            'bonData' => $bonData,
-            'data' => $data
+           'data' => $data
         ]);
     }
 

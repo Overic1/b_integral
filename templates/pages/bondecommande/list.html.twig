@@ -505,32 +505,34 @@
 										documentation <a href="https://datatables.net/extensions/responsive/" target="_blank" rel="noopener noreferrer nofollow">here</a>.</h6>
 								</div>
 								<div class="card-body">
+								{% if data is not empty %}
 									<table id="myTable" data-toggle="table" class="table table-striped table-hover text-center" style="width:100%">
                                         <thead>
                                             <tr>
                                                  <th >Ref</th>
-												 <th >Client</th>
-												 <th >Numero Bpay</th>
 												 <th >Total ht</th>
 												 <th >Total tva</th>
 												 <th >Total ttc</th>
+												 <th >Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        {# {{ dump(bonData) }} #}
+                                        {# {{ dump(data) }} #}
                                             {% for item in data %}
 											<tr>
-												<td>{{ item.idfact }}</td>
-												<td>{{ item.client }}</td>
-												<td> {{ item.bpay }} </td>
+												<td>{{ item.ref }}</td>
 												<td> {{ item.total_ht }} </td>
 												<td> {{ item.total_tva }} </td>
 												<td> {{ item.total_ttc }} </td>
-											
+												<td>{{ item.datebon }}</td>
 											</tr>
 											{% endfor %}
                                         </tbody>
                                     </table>
+								{% else %}
+									<p>Les données sont vides</p>
+								{% endif %}
+									
                                </div>
 							</div>
 						</div>

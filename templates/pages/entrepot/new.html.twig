@@ -368,7 +368,7 @@
 				<div class="container-fluid p-0">
 
 					<div class="mb-3">
-						<h1 class="h3 d-inline align-middle">Nouveau produit</h1><a class="badge bg-primary ms-2" href="https://adminkit.io/pricing/"
+						<h1 class="h3 d-inline align-middle">Nouvel entrepot</h1><a class="badge bg-primary ms-2" href="https://adminkit.io/pricing/"
 							target="_blank">Pro Component <i class="fas fa-fw fa-external-link-alt"></i></a>
 					</div>
 
@@ -392,96 +392,96 @@
 									{% endfor %}
 									{# pages/user/create.html.twig #}
                                     <div class="container ">
-                                        <h2>Formulaire d'enregistrement des produits</h2>
-                                            {{ form_start(form,{ 'attr': {'class': 'row g-3'} }) }}
-                                            <div class="col-md-3">
-                                                {{ form_label(form.label) }}
-                                                {{ form_widget(form.label) }}
+                                        <h2>Formulaire d'enregistrement des entrepots</h2>
+                                            {# {{ form_start(form,{ 'attr': {'class': 'row g-3'} }) }}
+                                                <div class="col-md-3">
+                                                    {{ form_label(form.label) }}
+                                                    {{ form_widget(form.label) }}
                                                 <div class="form-error">
                                                     {{ form_errors(form.label) }}
                                                 </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                {{ form_label(form.description) }}
-                                                {{ form_widget(form.description) }}
-                                                <div class="form-error">
-                                                    {{ form_errors(form.description) }}
                                                 </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                {{ form_label(form.barcode) }}
-                                                {{ form_widget(form.barcode) }}
-                                                <div class="form-error">
-                                                    {{ form_errors(form.barcode) }}
+                                                <div class="col-md-3">
+                                                    {{ form_label(form.description) }}
+                                                    {{ form_widget(form.description) }}
+                                                    <div class="form-error">
+                                                        {{ form_errors(form.description) }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                {{ form_label(form.price) }}
-                                                {{ form_widget(form.price) }}
-                                                <div class="form-error">
-                                                    {{ form_errors(form.price) }}
+                                                <div class="col-md-3">
+                                                    {{ form_label(form.barcode) }}
+                                                    {{ form_widget(form.barcode) }}
+                                                    <div class="form-error">
+                                                        {{ form_errors(form.barcode) }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                {{ form_label(form.price_ttc) }}
-                                                {{ form_widget(form.price_ttc) }}
-                                                <div class="form-error">
-                                                    {{ form_errors(form.price_ttc) }}
+                                                <div class="col-md-3">
+                                                    {{ form_label(form.price) }}
+                                                    {{ form_widget(form.price) }}
+                                                    <div class="form-error">
+                                                        {{ form_errors(form.price) }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                {{ form_label(form.status_buy) }}
-                                                {{ form_widget(form.status_buy) }}
-                                                <div class="form-error">
-                                                    {{ form_errors(form.status_buy) }}
+                                                <div class="col-md-3">
+                                                    {{ form_label(form.price_ttc) }}
+                                                    {{ form_widget(form.price_ttc) }}
+                                                    <div class="form-error">
+                                                        {{ form_errors(form.price_ttc) }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                {{ form_label(form.status) }}
-                                                {{ form_widget(form.status) }}
-                                                <div class="form-error">
-                                                    {{ form_errors(form.status) }}
+                                                <div class="col-md-3">
+                                                    {{ form_label(form.status_buy) }}
+                                                    {{ form_widget(form.status_buy) }}
+                                                    <div class="form-error">
+                                                        {{ form_errors(form.status_buy) }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                {{ form_label(form.tva_tx) }}
-                                                {{ form_widget(form.tva_tx) }}
-                                                <div class="form-error">
-                                                    {{ form_errors(form.tva_tx) }}
+                                                <div class="col-md-3">
+                                                    {{ form_label(form.status) }}
+                                                    {{ form_widget(form.status) }}
+                                                    <div class="form-error">
+                                                        {{ form_errors(form.status) }}
+                                                    </div>
                                                 </div>
-                                            </div> 
-                                            <div class="col-md-3">
-                                                {{ form_label(form.options_taxgroup) }}
-                                                {{ form_widget(form.options_taxgroup) }}
-                                            <div class="form-error">
-                                                {{ form_errors(form.options_taxgroup) }}
-                                            </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                {{ form_label(form.options_taxspecific) }}
-                                                {{ form_widget(form.options_taxspecific) }}
+                                                <div class="col-md-3">
+                                                    {{ form_label(form.tva_tx) }}
+                                                    {{ form_widget(form.tva_tx) }}
+                                                    <div class="form-error">
+                                                        {{ form_errors(form.tva_tx) }}
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-3">
+                                                    {{ form_label(form.options_taxgroup) }}
+                                                    {{ form_widget(form.options_taxgroup) }}
                                                 <div class="form-error">
-                                                    {{ form_errors(form.options_taxspecific) }}
+                                                    {{ form_errors(form.options_taxgroup) }}
                                                 </div>
-                                            </div>                                          
-                                            <div class="col-md-3">
-                                                {{ form_label(form.options_qty) }}
-                                                {{ form_widget(form.options_qty) }}
-                                                <div class="form-error">
-                                                    {{ form_errors(form.options_qty) }}
                                                 </div>
-                                            </div>
-                                             <div class="col-md-6">
-                                                {{ form_label(form.image) }}
-                                                {{ form_widget(form.image,{'attr': {'value': '/images/default.jpeg'}}) }}
-                                                <div class="form-error">
-                                                    {{ form_errors(form.image) }}
+                                                <div class="col-md-3">
+                                                    {{ form_label(form.options_taxspecific) }}
+                                                    {{ form_widget(form.options_taxspecific) }}
+                                                    <div class="form-error">
+                                                        {{ form_errors(form.options_taxspecific) }}
+                                                    </div>
+                                                </div>                                          
+                                                <div class="col-md-3">
+                                                    {{ form_label(form.options_qty) }}
+                                                    {{ form_widget(form.options_qty) }}
+                                                    <div class="form-error">
+                                                        {{ form_errors(form.options_qty) }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                {{ form_row(form.submit) }}
-                                            </div>
-                                            {{ form_end(form) }}
+                                                <div class="col-md-6">
+                                                    {{ form_label(form.image) }}
+                                                    {{ form_widget(form.image,{'attr': {'value': '/images/default.jpeg'}}) }}
+                                                    <div class="form-error">
+                                                        {{ form_errors(form.image) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    {{ form_row(form.submit) }}
+                                                </div>
+                                            {{ form_end(form) }} #}
                                         {# </div> #}
                                     </div>
                                 </div>

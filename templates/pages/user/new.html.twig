@@ -366,7 +366,7 @@
 				<div class="container-fluid p-0">
 
 					<div class="mb-3">
-						<h1 class="h3 d-inline align-middle">User form</h1><a class="badge bg-primary ms-2" href="https://adminkit.io/pricing/"
+						<h1 class="h3 d-inline align-middle">Formulaire d'enregistrement des collaborateurs</h1><a class="badge bg-primary ms-2" href="https://adminkit.io/pricing/"
 							target="_blank">Pro Component <i class="fas fa-fw fa-external-link-alt"></i></a>
 					</div>
 
@@ -385,10 +385,10 @@
                             {% endif %}
 						<div class="col-md-12">
 							<div class="card">
-							
+                                <h1>Nouveau collaborateur</h1>
 								<div class="card-body">
 									{# pages/user/create.html.twig #}
-                                    <form method="POST" action="{{ path('user.new') }}">
+                                    {# <form method="POST" action="{{ path('user.new') }}">
                                         <label class="form-label" for="email">Email</label>
                                         <input class="form-control" type="email" id="email" name="email" required>
                                         <br>
@@ -399,7 +399,7 @@
                                         <input class="form-control" type="text" id="firstname" name="firstname" required>
                                         <br>
                                         <label class="form-label" for="gender">Gender</label>
-                                        <select id="gender" name="gender" required>
+                                        <select class="form-select" id="gender" name="gender" required>
                                             <option value="male">Male</option>
                                             <option value="female">Female</option>
                                         </select>
@@ -411,7 +411,7 @@
                                         <input class="form-control" type="tel" id="tel" name="tel">
                                         <br>
                                         <button class="btn btn-secondary" type="submit">Create</button>
-                                    </form>
+                                    </form> #}
 								</div>
 							</div>
 						</div>

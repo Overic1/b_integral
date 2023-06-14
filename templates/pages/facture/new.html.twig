@@ -393,39 +393,40 @@
 									{# pages/user/create.html.twig #}
                                       <div class="container ">
                                         <h2>Formulaire d'enregistrement des factures</h2>
-                                        <form  method="POST" action="{{ path('facture.new') }}">
+                                        {# <form  method="POST" action="{{ path('facture.new') }}">
                                             <label for="client">Client :</label>
                                                 <select id="client" name="client">
                                                     {% for client in clients %}
                                                         <option value="{{ client.id }}">{{ client.clientname }}</option>
                                                     {% endfor %}
                                                 </select>
-                                        <div class="form-group">
-                                            <label for="total_ht">Total HT:</label>
-                                            <input type="number" class="form-control" id="total_ht" name="total_ht">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="total_tva">Total TVA:</label>
-                                            <input type="number" class="form-control" id="total_tva" name="total_tva">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="total_ttc">Total TTC:</label>
-                                            <input type="number" class="form-control" id="total_ttc" name="total_ttc">
-                                        </div>
-    
-                                        {# <label class="form-label" for="paye">Règlement:</label>
-                                         <select id="paye" name="paye" required>
-                                            <option value="0">non réglée</option>
-                                            <option value="1">réglée</option>
-                                        </select>
-                                        <label class="form-label" for="normalisation">Normalisation:</label>
-                                         <select id="normalisation" name="normalisation" required>
-                                            <option value="0">non réglée</option>
-                                            <option value="1">reglée</option>
-                                        </select> #}
+                                            <div class="form-group">
+                                                <label for="total_ht">Total HT:</label>
+                                                <input type="number" class="form-control" id="total_ht" name="total_ht">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="total_tva">Total TVA:</label>
+                                                <input type="number" class="form-control" id="total_tva" name="total_tva">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="total_ttc">Total TTC:</label>
+                                                <input type="number" class="form-control" id="total_ttc" name="total_ttc">
+                                            </div>
+        
+                                            <label class="form-label" for="paye">Règlement:</label>
+                                            <select id="paye" name="paye" required>
+                                                <option value="0">non réglée</option>
+                                                <option value="1">réglée</option>
+                                            </select>
+                                            <label class="form-label" for="normalisation">Normalisation:</label>
+                                            <select id="normalisation" name="normalisation" required>
+                                                <option value="0">non réglée</option>
+                                                <option value="1">reglée</option>
+                                            </select>
+                                            
+                                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                        </form> #}
                                         
-                                        <button type="submit" class="btn btn-primary">Enregistrer</button>
-                                        </form>
                                     </div>
 
 								</div>

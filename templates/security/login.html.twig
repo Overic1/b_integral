@@ -1,548 +1,230 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
 
-	{% block title %}
-        B-Integral
-    {% endblock %}
-
+{% block title %}B-integral{% endblock %}
 
 {% block body %}
 
 
-<!DOCTYPE html>
-<html lang="en">
+ <head><script src="/docs/5.3/assets/js/color-modes.js"></script>
 
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
-	<meta name="author" content="AdminKit">
-	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.112.5">
 
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link rel="shortcut icon" href="img/icons/icon-48x48.png')}}" />
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
 
-	<link rel="canonical" href="https://demo.adminkit.io/forms-layouts.html" />
+<link href="/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
-	<title>Form Layouts | AdminKit Demo</title>
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="/docs/5.3/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
+<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
+<meta name="theme-color" content="#712cf9">
 
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-	<!-- Choose your prefered color scheme -->
-	<!-- <link href="css/light.css" rel="stylesheet"> -->
-	<!-- <link href="css/dark.css" rel="stylesheet"> -->
-
-	<!-- BEGIN SETTINGS -->
-	<!-- Remove this after purchasing -->
-	<link class="js-stylesheet" href="css/light.css" rel="stylesheet">
-	<script src="{{asset('assets/dist/js/settings.js')}}"></script>
-	<style>
-		body {
-			opacity: 0;
-		}
-	</style>
-	<!-- END SETTINGS -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120946860-10"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-120946860-10', { 'anonymize_ip': true });
-</script></head>
-<!--
-  HOW TO USE: 
-  data-theme: default (default), dark, light, colored
-  data-layout: fluid (default), boxed
-  data-sidebar-position: left (default), right
-  data-sidebar-layout: default (default), compact
--->
-
-<body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-layout="default">
-	<div class="wrapper">
-		<nav id="sidebar" class="sidebar js-sidebar">
-			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="{{path('index')}}">
-					<span class="sidebar-brand-text align-middle">
-						AdminKit
-						<sup><small class="badge bg-primary text-uppercase">Pro</small></sup>
-					</span>
-					<svg class="sidebar-brand-icon align-middle" width="32px" height="32px" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.5"
-						stroke-linecap="square" stroke-linejoin="miter" color="#FFFFFF" style="margin-left: -3px">
-						<path d="M12 4L20 8.00004L12 12L4 8.00004L12 4Z"></path>
-						<path d="M20 12L12 16L4 12"></path>
-						<path d="M20 16L12 20L4 16"></path>
-					</svg>
-				</a>
-
-				<div class="sidebar-user">
-					<div class="d-flex justify-content-center">
-						<div class="flex-shrink-0">
-							<img src="{{asset('assets/dist/img/avatars/avatar.jpg')}}" class="avatar img-fluid rounded me-1" alt="Charles Hall" />
-						</div>
-						<div class="flex-grow-1 ps-2">
-							<a class="sidebar-user-title dropdown-toggle" href="#" data-bs-toggle="dropdown">
-								Charles Hall
-							</a>
-							<div class="dropdown-menu dropdown-menu-start">
-								<a class="dropdown-item" href="{{path('profile')}}"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i> Analytics</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="{{path('setting')}}"><i class="align-middle me-1" data-feather="settings"></i> Settings &
-									Privacy</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Log out</a>
-							</div>
-
-							<div class="sidebar-user-subtitle">Designer</div>
-						</div>
-					</div>
-				</div>
-
-				<ul class="sidebar-nav">
-					<li class="sidebar-header">
-						Pages
-					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#dashboards" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboards</span>
-						</a>
-						<ul id="dashboards" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="{{path('index')}}">Analytics</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="dashboard-ecommerce.html">E-Commerce <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="dashboard-crypto.html">Crypto <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-						</ul>
-					</li>
-
-					<li class="sidebar-item">
-						<a data-bs-target="#pages" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="layout"></i> <span class="align-middle">Pages</span>
-						</a>
-						<ul id="pages" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="{{path('setting')}}">Settings</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-projects.html">Projects <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-clients.html">Clients <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-orders.html">Orders <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-pricing.html">Pricing <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-chat.html">Chat <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-blank.html">Blank Page</a></li>
-						</ul>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="{{path('profile')}}">
-							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
-						</a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-invoice.html">
-							<i class="align-middle" data-feather="credit-card"></i> <span class="align-middle">Invoice</span>
-						</a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-tasks.html">
-							<i class="align-middle" data-feather="list"></i> <span class="align-middle">Tasks</span>
-							<span class="sidebar-badge badge bg-primary">Pro</span>
-						</a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="calendar.html">
-							<i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Calendar</span>
-							<span class="sidebar-badge badge bg-primary">Pro</span>
-						</a>
-					</li>
-
-					<li class="sidebar-item">
-						<a href="#auth" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="users"></i> <span class="align-middle">Auth</span>
-						</a>
-						<ul id="auth" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-sign-in.html">Sign In</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-sign-up.html">Sign Up</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-reset-password.html">Reset Password <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-404.html">404 Page <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-500.html">500 Page <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-						</ul>
-					</li>
-
-					<li class="sidebar-header">
-						Components
-					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#ui" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">UI Elements</span>
-						</a>
-						<ul id="ui" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-alerts.html">Alerts</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-buttons.html">Buttons</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-cards.html">Cards</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-general.html">General</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-grid.html">Grid</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-modals.html">Modals</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-offcanvas.html">Offcanvas <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-placeholders.html">Placeholders <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-tabs.html">Tabs <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-typography.html">Typography</a></li>
-						</ul>
-					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#icons" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span>
-							<span class="sidebar-badge badge bg-light">1.500+</span>
-						</a>
-						<ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="icons-feather.html">Feather</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="icons-font-awesome.html">Font Awesome <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-						</ul>
-					</li>
-					<li class="sidebar-item active">
-						<a data-bs-target="#forms" data-bs-toggle="collapse" class="sidebar-link">
-							<i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Forms</span>
-						</a>
-						<ul id="forms" class="sidebar-dropdown list-unstyled collapse show" data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="forms-basic-inputs.html">Basic Inputs</a></li>
-							<li class="sidebar-item active"><a class="sidebar-link" href="forms-layouts.html">Form Layouts <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="forms-input-groups.html">Input Groups <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-						</ul>
-					</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="tables-bootstrap.html">
-							<i class="align-middle" data-feather="list"></i> <span class="align-middle">Tables</span>
-						</a>
-					</li>
-
-					<li class="sidebar-header">
-						Plugins & Addons
-					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#form-plugins" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Form Plugins</span>
-						</a>
-						<ul id="form-plugins" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="forms-advanced-inputs.html">Advanced Inputs <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="forms-editors.html">Editors <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="forms-validation.html">Validation <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-						</ul>
-					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#datatables" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="list"></i> <span class="align-middle">DataTables</span>
-						</a>
-						<ul id="datatables" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="tables-datatables-responsive.html">Responsive Table <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="tables-datatables-buttons.html">Table with Buttons <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="tables-datatables-column-search.html">Column Search <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="tables-datatables-fixed-header.html">Fixed Header <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="tables-datatables-multi.html">Multi Selection <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="tables-datatables-ajax.html">Ajax Sourced Data <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-						</ul>
-					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#charts" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Charts</span>
-						</a>
-						<ul id="charts" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="charts-chartjs.html">Chart.js</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="charts-apexcharts.html">ApexCharts <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-						</ul>
-					</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="notifications.html">
-							<i class="align-middle" data-feather="bell"></i> <span class="align-middle">Notifications</span>
-							<span class="sidebar-badge badge bg-primary">Pro</span>
-						</a>
-					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#maps" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span>
-						</a>
-						<ul id="maps" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="maps-google.html">Google Maps</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="maps-vector.html">Vector Maps <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
-						</ul>
-					</li>
-
-					<li class="sidebar-item">
-						<a data-bs-target="#multi" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="corner-right-down"></i> <span class="align-middle">Multi Level</span>
-						</a>
-						<ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-							<li class="sidebar-item">
-								<a data-bs-target="#multi-2" data-bs-toggle="collapse" class="sidebar-link collapsed">Two Levels</a>
-								<ul id="multi-2" class="sidebar-dropdown list-unstyled collapse">
-									<li class="sidebar-item">
-										<a class="sidebar-link" href="#">Item 1</a>
-									</li>
-									<li class="sidebar-item">
-										<a class="sidebar-link" href="#">Item 2</a>
-									</li>
-								</ul>
-							</li>
-							<li class="sidebar-item">
-								<a data-bs-target="#multi-3" data-bs-toggle="collapse" class="sidebar-link collapsed">Three Levels</a>
-								<ul id="multi-3" class="sidebar-dropdown list-unstyled collapse">
-									<li class="sidebar-item">
-										<a data-bs-target="#multi-3-1" data-bs-toggle="collapse" class="sidebar-link collapsed">Item 1</a>
-										<ul id="multi-3-1" class="sidebar-dropdown list-unstyled collapse">
-											<li class="sidebar-item">
-												<a class="sidebar-link" href="#">Item 1</a>
-											</li>
-											<li class="sidebar-item">
-												<a class="sidebar-link" href="#">Item 2</a>
-											</li>
-										</ul>
-									</li>
-									<li class="sidebar-item">
-										<a class="sidebar-link" href="#">Item 2</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-				</ul>
-
-				<div class="sidebar-cta">
-					<div class="sidebar-cta-content">
-						<strong class="d-inline-block mb-2">Weekly Sales Report</strong>
-						<div class="mb-3 text-sm">
-							Your weekly sales report is ready for download!
-						</div>
-
-						<div class="d-grid">
-							<a href="https://adminkit.io/" class="btn btn-outline-primary" target="_blank">Download</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</nav>
-
-		<div class="main">
-			    <nav class="navbar navbar-expand navbar-light navbar-bg">
-            <a class="sidebar-toggle js-sidebar-toggle">
-                <i class="hamburger align-self-center"></i>
-            </a>
-
-            <div class="navbar-collapse collapse">
-                <ul class="navbar-nav navbar-align">
-                    <li class="nav-item dropdown">
-                        <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
-                            <div class="position-relative">
-                                <i class="align-middle" data-feather="bell"></i>
-                                <span class="indicator">
-                                    4
-                                </span>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="alertsDropdown">
-                            <div class="dropdown-menu-header">
-                                4 New Notifications
-                                								
-                            </div>
-                            <div class="list-group">
-                               
-                                
-                            </div>
-                            <div class="dropdown-menu-footer">
-                                <a href="#" class="text-muted">
-                                    Show all notifications
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-icon dropdown-toggle" href="#" id="messagesDropdown" data-bs-toggle="dropdown">
-                            <div class="position-relative">
-                                <i class="align-middle" data-feather="message-square"></i>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="messagesDropdown">
-                            <div class="dropdown-menu-header">
-                                <div class="position-relative">
-                                    4 New Messages
-                                    									
-                                </div>
-                            </div>
-                            <div class="list-group">
-                    
-                                            
-                            </div>
-                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
-                                            <i class="align-middle" data-feather="settings"></i>
-                                        </a>
-
-                                        <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                                            <img src="{{ asset('assets/dist/img/avatars/avatar.jpg') }}" class="avatar img-fluid rounded me-1" alt="Charles Hall" />
-                                        </a>
-                                    </li>
-                                    {% if app.user %}
-                                        <div class="dflex">
-                                            <li class="nav-item dropdown d-flex">
-
-                                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <span class="user-name text-black">
-                                                    {{ app.user.getNom}}
-                                                    </span>
-                                                </a>
-                                                <svg class="bi bi-2x" width="32" height="32" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-person" viewBox="0 0 16 16">
-                                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/></svg>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="">Modifier mes infos</a></li>
-                                                        <li><a class="dropdown-item" href="{{ path('security.logout') }}">Modifier mon mot de passe</a></li>
-                                                        <li><hr class="dropdown-divider"></li>
-                                                        <li><a class="dropdown-item" href="{{ path('security.logout') }}">Deconnexion</a></li>
-                                                    </ul>
-                                            </li>
-                                        </div>
-                                        
-                                        {% else %}
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ path('security.login') }}">Connexion</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ path('security.login') }}">Inscription</a>
-                                        </li>
-                                        {% endif %}
-                
-                                </ul>
-                            </div>
-        </nav>
-
-			<main class="content">
-				<div class="container-fluid p-0">
-
-					<div class="mb-3">
-						<h1 class="h3 d-inline align-middle">Login Form</h1><a class="badge bg-primary ms-2" href="https://adminkit.io/pricing/"
-							target="_blank">Pro Component <i class="fas fa-fw fa-external-link-alt"></i></a>
-					</div>
-
-					<div class="row">
-						<div class="col-12 col-xl-6">
-							
-						</div>
-						<div class="col-12 col-xl-6">
-							<div class="card">
-								
-							
-							</div>
-						</div>
-						 	{% if error %}
-                                <div class="alert alert-danger mt-4">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                            {% endif %}
-						<div class="col-md-12">
-							<div class="card">
-							
-								<div class="card-body">
-									<form action = "" method="post">
-										<div class="mb-3">
-											<label for="exampleInputEmail1" class="form-label">Email address</label>
-											<input type="email" name="_username"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
-											<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-										</div>
-										<div class="mb-3">
-											<label for="exampleInputPassword1" class="form-label">Password</label>
-											<input type="password" class="form-control" name="_password" id="exampleInputPassword1">
-										</div>
-										<div class="mb-3 form-check">
-											<input type="checkbox" class="form-check-input" id="exampleCheck1">
-											<label class="form-check-label" for="exampleCheck1">Check me out</label>
-										</div>
-										<button type="submit" class="btn btn-primary">Submit</button>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-			</main>
-
-			<footer class="footer">
-				<div class="container-fluid">
-					<div class="row text-muted">
-						<div class="col-6 text-start">
-							<p class="mb-0">
-								<a href="https://adminkit.io/" target="_blank" class="text-muted"><strong>AdminKit</strong></a> &copy;
-							</p>
-						</div>
-						<div class="col-6 text-end">
-							<ul class="list-inline">
-								<li class="list-inline-item">
-									<a class="text-muted" href="#">Support</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="#">Help Center</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="#">Privacy</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="#">Terms</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</footer>
-		</div>
-	</div>
-
-	<script src="{{asset('assets/dist/js/app.js')}}"></script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function(event) { 
-    setTimeout(function(){
-      if(localStorage.getItem('popState') !== 'shown'){
-        window.notyf.open({
-          type: "success",
-          message: "Get access to all 500+ components and 45+ pages with AdminKit PRO. <u><a class=\"text-white\" href=\"https://adminkit.io/pricing\" target=\"_blank\">More info</a></u> 🚀",
-          duration: 10000,
-          ripple: true,
-          dismissible: false,
-          position: {
-            x: "left",
-            y: "bottom"
-          }
-        });
-
-        localStorage.setItem('popState','shown');
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
       }
-    }, 15000);
-  });
-</script></body>
 
-</html>
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
 
+      .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+      .bd-mode-toggle {
+        z-index: 1500;
+      }
+    </style>
+
+    <!-- Custom styles for this template -->
+    <link href="sign-in.css" rel="stylesheet">
+
+	 </head>
+  <body class="d-flex align-items-center py-4 bg-body-tertiary">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+		<symbol id="check2" viewBox="0 0 16 16">
+			<path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+		</symbol>
+		<symbol id="circle-half" viewBox="0 0 16 16">
+			<path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+		</symbol>
+		<symbol id="moon-stars-fill" viewBox="0 0 16 16">
+			<path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+			<path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+		</symbol>
+		<symbol id="sun-fill" viewBox="0 0 16 16">
+			<path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+		</symbol>
+    </svg>
+
+    {# <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+		<button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+				id="bd-theme"
+				type="button"
+				aria-expanded="false"
+				data-bs-toggle="dropdown"
+				aria-label="Toggle theme (auto)">
+			<svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
+			<span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+		</button>
+      	<ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+			<li>
+				<button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+					<svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#sun-fill"></use></svg>
+					Light
+					<svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+				</button>
+			</li>
+			<li>
+				<button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+					<svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
+					Dark
+					<svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+				</button>
+			</li>
+			<li>
+				<button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
+					<svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#circle-half"></use></svg>
+					Auto
+					<svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+				</button>
+			</li>
+    	</ul>
+	</div> #}
+
+    
+{# <main class="form-signin w-100 m-auto">
+	<form action = "" method="post" class="container">
+		<div class="row">
+			<div class="col-md-6 text-center">
+				{% if error %}
+					<div class="alert alert-danger mt-4">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				{% endif %}
+				<h1 class="h3 mb-3 fw-normal">Se connecter</h1>
+
+				<div class="form-floating">
+					<input type="email" name="_username"  class="form-control" id="floatingInput" placeholder="name@example.com">
+					<label for="floatingInput">Email address</label>
+				</div>
+				<div class="form-floating">
+					<input type="password" class="form-control" name="_password" id="floatingPassword" placeholder="Password">
+					<label for="floatingPassword">Password</label>
+				</div>
+
+				<div class="form-check text-start my-3">
+				<input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+				<label class="form-check-label" for="flexCheckDefault">
+					Remember me
+				</label>
+				</div>
+				<button type="submit" class="btn btn-primary w-100 py-2">Submit</button>
+				<p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
+			</div>
+		</div>
+  	</form>
+</main> #}
+
+
+<main class="form-signin w-100 m-auto">
+  <div class="container">
+  <form action = "" method="post" class="container">
+    <div class="row">
+      	<div class="col-md-12 text-center">
+        	{# <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> #}
+        	{% if error %}
+          		<div class="alert alert-danger mt-4">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        	{% endif %}
+        	<h1 class="h3 mb-3 fw-normal">Se connecter</h1>
+
+			<div class="form-floating mb-4">
+				<input type="email" name="_username" class="form-control" id="floatingInput" placeholder="name@example.com">
+				<label for="floatingInput">Email address</label>
+			</div>
+			<div class="form-floating">
+				<input type="password" class="form-control" name="_password" id="floatingPassword" placeholder="Password">
+				<label for="floatingPassword">Password</label>
+			</div>
+
+			<div class="form-check text-start my-3">
+				<input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+				<label class="form-check-label" for="flexCheckDefault">
+					Remember me
+				</label>
+			</div>
+        	<button type="submit" class="btn btn-primary w-100 py-2">Submit</button>
+        	<p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
+      	</div>
+    </div>
+  </form>
+  </div>
+</main>
+
+
+
+<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 {% endblock %}

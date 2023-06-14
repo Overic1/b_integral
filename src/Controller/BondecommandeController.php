@@ -27,17 +27,16 @@ class BondecommandeController extends AbstractController
     public function index(HttpClientInterface  $httpClient): Response
     {
 
-        // $user = $this->security->getUser();
-        // $apiKey = '';
-        // $url = '';
-        // if ($user instanceof Entreprise) {
-        //     $apiKey = $user->getApiKey();
-        //     $url = $user->getBaseUrl();
-        // }
+        $user = $this->security->getUser();
+        $apiKey = '';
+        $url = '';
+        if ($user instanceof Entreprise) {
+            $apiKey = $user->getApiKey();
+            $url = $user->getBaseUrl();
+        }
 
 
-        // $bonResponse = $httpClient->request('GET', $url . 'index.php/warehouses' . '?DOLAPIKEY=' . $apiKey);
-        $bonResponse = $httpClient->request('GET', 'https://erp.net2all.online/enseignetesta/htdocs/api/index.php/warehouses/' . '?DOLAPIKEY=' . 'a3HIuxyzAB2ST4K5vw6cQRUde');
+        $bonResponse = $httpClient->request('GET', $url . 'index.php/orders' . '?DOLAPIKEY=' . $apiKey);
         $statusCode = $bonResponse->getStatusCode();
 
         $data = [];

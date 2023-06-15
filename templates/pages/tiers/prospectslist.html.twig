@@ -504,31 +504,33 @@
 										documentation <a href="https://datatables.net/extensions/responsive/" target="_blank" rel="noopener noreferrer nofollow">here</a>.</h6>
 								</div>
 								<div class="card-body">
-                                    <table id="myTable" data-toggle="table" class="table table-striped table-hover text-center" style="width:100%">
-										<thead>
-											<tr>
-												 <th >Ref</th>
-												 <th >Client</th>
-												 <th >Numero Bpay</th>
-												 <th >Code client</th>
-												{#  <th >Prospect</th> #}
+									<div class="table-responsive">
+										<table id="myTable" data-toggle="table" class="table table-striped table-hover text-center" style="width:100%">
+											<thead>
+												<tr>
+													<th >Ref</th>
+													<th >Client</th>
+													<th >Numero Bpay</th>
+													<th >Code client</th>
+													{#  <th >Prospect</th> #}
 
-											</tr>
-										</thead>
-										
-										<tbody>
-                                            {# {{ dump(clientData) }} #}
-											{% for item in data %}
-											<tr>
-												<td>{{ item.clientid }}</td>
-												<td>{{ item.client }}</td>
-												<td> {{ item.bpay }} </td>
-												<td> {{ item.codeclient }} </td>
-												{# <td> {{ item.prospect }} </td> #}
-											</tr>
-                                            {% endfor %}
-										</tbody>
-									</table>
+												</tr>
+											</thead>
+											
+											<tbody>
+												{# {{ dump(clientData) }} #}
+												{% for item in data %}
+												<tr>
+													<td>{{ item.clientid }}</td>
+													<td>{{ item.client }}</td>
+													<td> {{ item.bpay }} </td>
+													<td> {{ item.codeclient }} </td>
+													{# <td> {{ item.prospect }} </td> #}
+												</tr>
+												{% endfor %}
+											</tbody>
+										</table>
+									</div>
 								</div>
 							</div>
 						</div>

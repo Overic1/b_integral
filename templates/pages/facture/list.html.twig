@@ -526,59 +526,61 @@
 										documentation <a href="https://datatables.net/extensions/responsive/" target="_blank" rel="noopener noreferrer nofollow">here</a>.</h6>
 								</div>
 								<div class="card-body">
-                                    <table id="myTable" data-toggle="table" class="table table-striped table-hover text-center" style="width:100%">
-										<thead>
-											<tr>
-												 <th >Ref</th>
-												 <th >Client</th>
-												 <th >Numero Bpay</th>
-												 <th >Code client</th>
-												 <th >Date</th>
-												 <th >Total ht</th>
-												 <th >Total tva</th>
-												 <th >Total ttc</th>
-												 <th > Reglement </th>
-												 <th >Normalisation</th>
+									<div class="table-responsive">
+										<table id="myTable" data-toggle="table" class="table table-striped table-hover text-center" style="width:100%">
+											<thead>
+												<tr>
+													<th >Ref</th>
+													<th >Client</th>
+													<th >Numero Bpay</th>
+													<th >Code client</th>
+													<th >Date</th>
+													<th >Total ht</th>
+													<th >Total tva</th>
+													<th >Total ttc</th>
+													<th > Reglement </th>
+													<th >Normalisation</th>
 
-											</tr>
-										</thead>
-										
-										<tbody>
-											{% for item in data %}
-											<tr>
-												<td>{{ item.idfact }}</td>
-												<td>{{ item.client }}</td>
-												<td> {{ item.bpay }} </td>
-												<td> {{ item.codeclient }} </td>
-												<td> {{ item.datefact }} </td>
-												<td> {{ item.total_ht }} </td>
-												<td> {{ item.total_tva }} </td>
-												<td> {{ item.total_ttc }} </td>
-												
-												{% if item.paye == 0 %}
-
-													{# <td><button type="button" class="rounded-pill btn btn-outline-danger btn-xs" style="font-size:15px;white-space:nowrap;background-color: transparent;color: red;">non réglée</button></td> #}
-													<td><button type="button" class="rounded-pill btn btn-outline-danger btn-xs" style="font-size:15px;white-space:nowrap;">non réglée</button></td>
-
-												{% else %}
-												
-													<td><button type="button" class="rounded-pill center btn btn-outline-success btn-sm"  style="font-size:15px;white-space: nowrap;">réglée</button></td>
-
-												{% endif %}
-
-												{% if item.normalisation == 1  %}
+												</tr>
+											</thead>
 											
-													<td><button type="button" class="rounded-pill btn btn-outline-primary btn-sm"  style="font-size:15px;white-space: nowrap;">normalisée</button></td>
-											
-												{% else %}
+											<tbody>
+												{% for item in data %}
+												<tr>
+													<td>{{ item.idfact }}</td>
+													<td>{{ item.client }}</td>
+													<td> {{ item.bpay }} </td>
+													<td> {{ item.codeclient }} </td>
+													<td> {{ item.datefact }} </td>
+													<td> {{ item.total_ht }} </td>
+													<td> {{ item.total_tva }} </td>
+													<td> {{ item.total_ttc }} </td>
+													
+													{% if item.paye == 0 %}
 
-													<td><button type="button" class="rounded-pill btn btn-outline-danger btn-xs"  style="font-size:15px;white-space: nowrap;">non normalisée</button></td>
+														{# <td><button type="button" class="rounded-pill btn btn-outline-danger btn-xs" style="font-size:15px;white-space:nowrap;background-color: transparent;color: red;">non réglée</button></td> #}
+														<td><button type="button" class="rounded-pill btn btn-outline-danger btn-xs" style="font-size:15px;white-space:nowrap;">non réglée</button></td>
 
-												{% endif %} 
-											</tr>
-											{% endfor %}
-										</tbody>
-									</table>
+													{% else %}
+													
+														<td><button type="button" class="rounded-pill center btn btn-outline-success btn-sm"  style="font-size:15px;white-space: nowrap;">réglée</button></td>
+
+													{% endif %}
+
+													{% if item.normalisation == 1  %}
+												
+														<td><button type="button" class="rounded-pill btn btn-outline-primary btn-sm"  style="font-size:15px;white-space: nowrap;">normalisée</button></td>
+												
+													{% else %}
+
+														<td><button type="button" class="rounded-pill btn btn-outline-danger btn-xs"  style="font-size:15px;white-space: nowrap;">non normalisée</button></td>
+
+													{% endif %} 
+												</tr>
+												{% endfor %}
+											</tbody>
+										</table>
+									</div>
 								</div>
 							</div>
 						</div>

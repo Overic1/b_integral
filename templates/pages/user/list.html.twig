@@ -507,34 +507,36 @@
 										documentation <a href="https://datatables.net/extensions/responsive/" target="_blank" rel="noopener noreferrer nofollow">here</a>.</h6>
 								</div>
 								<div class="card-body">	
-                                    <table id="myTable" data-toggle="table" class="table table-striped table-hover text-center" style="width:100%">
-                                        <thead>
-                                            <tr>
-												{#  <th data-sortable="true">Id</th>  #}
-                                                <th>Nom</th>
-												<th>Prénom</th>
-												<th>Genre</th>
-												<th>Email</th> 
-												<th>Numéro de Téléphone</th>
-												<th>Photo</th> 
+									<div class="table-responsive">
+										<table id="myTable" data-toggle="table" class="table table-striped table-hover text-center" style="width:100%">
+											<thead>
+												<tr>
+													{#  <th data-sortable="true">Id</th>  #}
+													<th>Nom</th>
+													<th>Prénom</th>
+													<th>Genre</th>
+													<th>Email</th> 
+													<th>Numéro de Téléphone</th>
+													<th>Photo</th> 
 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        {# {{ dump(bonData) }} #}
-                                            {% for item in data %}
-											<tr>
-												{# <td>{{ item.id }}</td> #}
-												<td>{{ item.firstname }}</td>
-												<td>{{ item.lastname }}</td>
-												<td> {{ item.gender }} </td>
-												<td> {{ item.email }} </td>
-												<td> {{ item.tel }} </td>
-												<td> <img src="asset('assets/dist/img/istockphoto-1311088144-612x612.jpg')" alt=""> </td>
-											</tr>
-											{% endfor %}
-                                        </tbody>
-                                    </table>
+												</tr>
+											</thead>
+											<tbody>
+											{# {{ dump(bonData) }} #}
+												{% for item in data %}
+												<tr>
+													{# <td>{{ item.id }}</td> #}
+													<td>{{ item.firstname }}</td>
+													<td>{{ item.lastname }}</td>
+													<td> {{ item.gender }} </td>
+													<td> {{ item.email }} </td>
+													<td> {{ item.tel }} </td>
+													<td> <img src="asset('assets/dist/img/istockphoto-1311088144-612x612.jpg')" alt=""> </td>
+												</tr>
+												{% endfor %}
+											</tbody>
+										</table>
+									</div>
                                </div>
 							</div>
 						</div>

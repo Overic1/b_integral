@@ -659,34 +659,36 @@
 										documentation <a href="https://datatables.net/extensions/responsive/" target="_blank" rel="noopener noreferrer nofollow">here</a>.</h6>
 								</div>
 								<div class="card-body">
-									<table id="myTable" data-toggle="table" class="table table-striped table-hover text-center" style="width:100%">
-                                        <thead>
-                                            <tr>
-                                                <th>Libellé</th>
-                                                 <th>Banque</th>
-                                                 <th>Numéro du compte</th>
-                                                 <th>Status</th>
-                                                 <th>Description</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for item in data %}
-                                                {# {{ dump(produitData) }} #}
-                                                <tr>
-                                                    <td>{{ item.label }}</td>
-                                                    <td>{{ item.banque }}</td>
-                                                    <td>{{item.comment}}</td>
-                                                        {% if item.status == 1 %}
-                                                            <td><button type="button" class="rounded-pill text-danger center btn btn-outline-danger btn-sm" style="background-color: transparent; cursor: default;">fermé</button></td>
-                                                        {% else %}
-                                                             <td><button type="button" class="rounded-pill text-success center btn btn-outline-success btn-sm" style="background-color: transparent; cursor: default;">ouvert</button></td>
-                                                        {% endif %}
-                                                    <td>{{ item.numcompte }}</td>
-                                                    {# <td style="white-space: nowrap;">{{ item.taxgroup }}</td> #}                                            
-                                                </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
+									<div class="table-responsive">
+										<table id="myTable" data-toggle="table" class="table table-striped table-hover text-center" style="width:100%">
+											<thead>
+												<tr>
+													<th>Libellé</th>
+													<th>Banque</th>
+													<th>Numéro du compte</th>
+													<th>Status</th>
+													<th>Description</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for item in data %}
+													{# {{ dump(produitData) }} #}
+													<tr>
+														<td>{{ item.label }}</td>
+														<td>{{ item.banque }}</td>
+														<td>{{item.comment}}</td>
+															{% if item.status == 1 %}
+																<td><button type="button" class="rounded-pill text-danger center btn btn-outline-danger btn-sm" style="background-color: transparent; cursor: default;">fermé</button></td>
+															{% else %}
+																<td><button type="button" class="rounded-pill text-success center btn btn-outline-success btn-sm" style="background-color: transparent; cursor: default;">ouvert</button></td>
+															{% endif %}
+														<td>{{ item.numcompte }}</td>
+														{# <td style="white-space: nowrap;">{{ item.taxgroup }}</td> #}                                            
+													</tr>
+												{% endfor %}
+											</tbody>
+										</table>
+									</div>
                                         
                                     {# ------------------- #}
                                </div>

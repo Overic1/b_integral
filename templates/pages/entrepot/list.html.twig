@@ -521,28 +521,30 @@
 										documentation <a href="https://datatables.net/extensions/responsive/" target="_blank" rel="noopener noreferrer nofollow">here</a>.</h6>
 								</div>
 								<div class="card-body">
-                                    <table id="myTable" data-toggle="table" class="table table-striped table-hover text-center" style="width:100%">
-                                        <thead>
-                                            <tr>
-                                            {#  <th >Ref</th> #}
-                                             <th >Nom</th>
-                                             <th >Description</th>
-                                             <th >Lieu</th>
-                                             <th >Statut</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for item in data %}
-                                            <tr>
-                                                {# <td>{{ item.ref }}</td> #}
-                                                <td>{{ item.libelle }}</td>
-                                                <td>{{ item.description }}</td>
-                                                <td>{{ item.lieu }}</td>
-                                                <td>{{ item.statut }}</td>
-                                            </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
+									<div class="table-responsive">
+										<table id="myTable" data-toggle="table" class="table table-striped table-hover text-center" style="width:100%">
+											<thead>
+												<tr>
+												{#  <th >Ref</th> #}
+												<th >Nom</th>
+												<th >Description</th>
+												<th >Lieu</th>
+												<th >Statut</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for item in data %}
+												<tr>
+													{# <td>{{ item.ref }}</td> #}
+													<td>{{ item.libelle }}</td>
+													<td>{{ item.description }}</td>
+													<td>{{ item.lieu }}</td>
+													<td>{{ item.statut }}</td>
+												</tr>
+												{% endfor %}
+											</tbody>
+										</table>
+									</div>
                                </div>
 							</div>
 						</div>

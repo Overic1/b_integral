@@ -152,13 +152,10 @@ class HomeController extends AbstractController
                 if($jsonData[$i]['type'] == 1 ){
                     $BanqueCount = $BanqueCount + 1;
                 }
-                if($jsonData[$i]['type'] == 1 ){
+                if($jsonData[$i]['type'] == 2 ){
                     $CaisseCount = $CaisseCount + 1;
                 }
             }
-        } else {
-            $CaissCount = 0;
-            $BanqueCount = 0;
         }
 
         // *********************************

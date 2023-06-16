@@ -35,7 +35,6 @@ class EntrepriseCrudController extends AbstractCrudController
         // return [
             yield IdField::new('id')->hideOnForm();  // Masquer sur le formulaire d'édition
             yield TextField::new('nom')->setColumns(6);
-            // yield EmailField::new('codeEntreprise')->setColumns(6);
             yield EmailField::new('email')->setColumns(6);
             yield TextField::new('password')
             ->setFormType(RepeatedType::class)
@@ -63,22 +62,7 @@ class EntrepriseCrudController extends AbstractCrudController
             yield TelephoneField::new('num_tel')->setRequired(false)->setColumns(3);
             yield IntegerField::new('num_ifu')->setRequired(false)->setColumns(3);
             yield IntegerField::new('num_nim')->setRequired(false)->setColumns(3);
-            // yield AssociationField::new('installation')->setColumns(3)
-            //     ->setRequired(false)
-            //     ->setFormTypeOptions([
-            //         'query_builder'=>function(InstallationRepository $installation)
-            //         {
-            //             return $installation->createQueryBuilder('i')
-            //             ->orderBy('i.nom', 'ASC');
-            //         }
-            //     ]);
-
-            // yield TextField::new('nomDeLaBase')->hideOnForm()->setColumns(3);
-            // yield TextField::new('user')->hideOnForm()->setColumns(3);
-            // yield TextField::new('passBase')->hideOnForm()->setColumns(3);
             
-
-        // ];
     }
 
 

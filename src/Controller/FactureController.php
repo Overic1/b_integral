@@ -13,6 +13,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
+#[Route('/entreprise')]
+//#[IsalGranted('ROLE_USER')]
 class FactureController extends AbstractController
 {
 
@@ -48,7 +50,7 @@ class FactureController extends AbstractController
             
             
             foreach($factData as $factData){
-                $idfact = $factData['id'];
+                $idfact = $factData['ref'];
                 $datefact = $factData['date'];
                 $total_ht = $factData['total_ht'];
                 $total_tva = $factData['total_tva'];

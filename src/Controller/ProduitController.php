@@ -17,10 +17,13 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
 
+#[Route('/entreprise')]
+//#[IsalGranted('ROLE_USER')]
 class ProduitController extends AbstractController
 {
 

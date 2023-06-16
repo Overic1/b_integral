@@ -9,9 +9,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-
+#[Route('/entreprise')]
+// #[IsGranted('ROLE_USER')]
 class BondecommandeController extends AbstractController
 {
 
@@ -45,7 +47,7 @@ class BondecommandeController extends AbstractController
 
             $bonData = $bonResponse->toArray();
 
-// dd($bonData);
+
             for ($i = 0; $i < count($bonData); $i++) {
                 
                     $ref = $bonData[$i]['ref'];
@@ -91,78 +93,8 @@ class BondecommandeController extends AbstractController
     #[Route('/entreprise/bondecommande/new', name: 'bondecommande.new', methods: ['GET', 'POST'])]
     public function create(Request $request, HttpClientInterface $httpClient): Response
     {
-        // Créer le formulaire et l'associer à la requête
-        $form = $this->createForm(BondecommandeType::class);
-        $form->handleRequest($request);
-
-
-        $user = $this->security->getUser();
-        $apiKey = '';
-        $url = '';
-
-        if ($user instanceof Entreprise) {
-            $apiKey = $user->getApiKey();
-            $url = $user->getBaseUrl();
-            $codeEnseigne = $user->getCodeEntreprise();
-        }
-
-        // $codeEnseigne = "RXUX";
-
-        $randomNumber = rand(100000, 999999);
-        $ref = $codeEnseigne . "-" . 'PT' . '-' . $randomNumber;
-
-        // Vérifier si le formulaire a été soumis et est valide
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Récupérer les données du formulaire
-            $formData = $form->getData();
-
-            // Construire le tableau des données à envoyer à l'API
-            $bondecommandeData = [
-                "label" => $formData['label'],
-                "description" => $formData['description'],
-                "type" => "0",
-                "barcode" => $formData['barcode'],
-                "ref" => $ref,
-                "price" => $formData['price'],
-                "price_ttc" => $formData['price_ttc'],
-                "status_buy" => $formData['status_buy'],
-                "status" => $formData['status'],
-                "tva_tx" => $formData['tva_tx'],
-                "array_options" => [
-                    "options_qty" => $formData['options_qty'],
-                ]
-            ];
-            // dd($bondecommandeData);
-            try {
-
-                // Envoyer la requête POST à l'API pour créer le bondecommande
-                $response = $httpClient->request('POST', $url . 'index.php/products' . '?DOLAPIKEY=' . $apiKey, [
-                    'json' => $bondecommandeData
-                ]);
-
-                $statusCode = $response->getStatusCode();
-
-                // Traiter la réponse de l'API
-                if ($statusCode === 200) {
-                    // bondecommande créé avec succès
-                    $this->addFlash(
-                        'success',
-                        'Le bondecommande a été effectué avec succès !'
-                    );
-                    return $this->redirectToRoute('bondecommande.list');
-                }
-            } catch (RequestException $e) {
-                // Gérer les erreurs de requête HTTP
-                $errorMessage = 'Une erreur est survenue lors de la communication avec l\'API : ';
-                $this->addFlash(
-                    'error',
-                    $errorMessage
-                );
-                // return $this->redirectToRoute('bondecommande.new');
-            }
-        }
-        return $this->render('pages/bondecommande/newpro.html.twig', [
-            // 'form' => $form->createView(),
+    
+               return $this->render('pages/bondecommande/new.html.twig', [
         ]);
     }
     

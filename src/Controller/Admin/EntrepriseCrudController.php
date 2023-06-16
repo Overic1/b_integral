@@ -75,7 +75,7 @@ class EntrepriseCrudController extends AbstractCrudController
         $entityInstance->setUser();
         $entityInstance->setCodeEntreprise();
 
-
+        $entityInstance->setRoles(['ROLE_USER']);
         $pass = $entityInstance->getPassword();
         // $passh = hashPassword($pass);
         $plainPassword = $pass;

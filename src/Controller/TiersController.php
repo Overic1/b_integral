@@ -11,9 +11,11 @@ use GuzzleHttp\Exception\RequestException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 
-
+#[Route('/entreprise')]
+//#[IsalGranted('ROLE_USER')]
 class TiersController extends AbstractController
 {
 

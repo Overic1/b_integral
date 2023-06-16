@@ -32,6 +32,8 @@
 				</a>
 
 				{# ============ debut dashboard =============#}
+				
+
 
 				{# ============ fin dashboard ===============#}
 
@@ -203,20 +205,20 @@
 								</div>
 							</div>
 						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#"
-								data-bs-toggle="dropdown">
-								<i class="align-middle" data-feather="settings"></i>
+						<li class="nav-item">
+							<a class="nav-flag" href="#">
+								<img src="{{asset('assets/dist/img/icons/icon-48x48.png')}}" alt="service" />
 							</a>
-
-							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle d-inline-block d-sm-inline-block" href="#"
 								data-bs-toggle="dropdown">
 								{% if app.user.logo %}
 								<img src="{{ asset('uploads/' ~ app.user.logo) }}" class="avatar img-fluid rounded me-1"
-									alt="Charles Hall" /> <span class="text-dark">{{ app.user.nom }}</span>
+									alt="logo" /> <span class="text-dark">{{ app.user.nom }}</span>
 								{% else %}
 								<img src="{{ asset('images/default.jpg') }}" class="avatar img-fluid rounded me-1"
-									alt="Charles Hall" /> <span class="text-dark">{{ app.user.nom }}</span>
+									alt="logo" /> <span class="text-dark">{{ app.user.nom }}</span>
 								{% endif %}
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
@@ -251,7 +253,7 @@
 								<div class="card-body">
 									{# ============ debut contenu =============#}
 
-
+											
 
 									{# ============ fin contenu ===============#}
 								</div>

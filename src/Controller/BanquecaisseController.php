@@ -10,9 +10,11 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-
+#[Route('/entreprise')]
+// #[IsGranted('ROLE_USER')]
 class BanquecaisseController extends AbstractController
 {
 
@@ -28,7 +30,7 @@ class BanquecaisseController extends AbstractController
      * @param HttpClientInterface $httpClient
      * @return Response
      */
-    #[Route('/entreprise/banque', name: 'banque.list')]
+    #[Route('/banque', name: 'banque.list')]
     public function banquelist(HttpClientInterface  $httpClient): Response
     {
         
@@ -85,7 +87,7 @@ class BanquecaisseController extends AbstractController
      * @param HttpClientInterface $httpClient
      * @return Response
      */
-    #[Route('/entreprise/caisse', name: 'caisse.list')]
+    #[Route('/caisse', name: 'caisse.list')]
     public function listcaisse(HttpClientInterface  $httpClient): Response
     {
 
@@ -133,7 +135,7 @@ class BanquecaisseController extends AbstractController
 
 
 
-    #[Route('/entreprise/banquecaisse/new', name: 'banquecaisse.new', methods: ['GET', 'POST'])]
+    #[Route('/banquecaisse/new', name: 'banquecaisse.new', methods: ['GET', 'POST'])]
     public function create(Request $request, HttpClientInterface $httpClient): Response
     {
 

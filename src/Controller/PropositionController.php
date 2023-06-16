@@ -8,10 +8,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Entreprise;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 
 
+#[Route('/entreprise')]
+//#[IsalGranted('ROLE_USER')]
 class PropositionController extends AbstractController
 {
 
@@ -147,6 +150,6 @@ class PropositionController extends AbstractController
             return $this->redirectToRoute('entrepots.list');
         }
 
-        return $this->render('pages/entrepot/new.html.twig');
+        return $this->render('pages/proposition/new.html.twig');
     }
 }

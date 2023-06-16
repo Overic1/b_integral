@@ -8,9 +8,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Entreprise;
 use Symfony\Component\Security\Core\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 
+#[Route('/entreprise')]
+// #[IsGranted('ROLE_USER')]
 class EntrepotController extends AbstractController
 {
 

@@ -5,7 +5,7 @@
 {% block body %}
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">B-Integral</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -24,10 +24,13 @@
 
 <div class="container">
     <div class="jumbotron mt-4">
-        <h1 class="display-4">Page temporaire</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <a href='https://regie.myn2a.online/www/delivery/ck.php?n=a05aa9bf&amp;cb=INSERT_RANDOM_NUMBER_HERE' target='_blank'><img class=" img-fluid mb-2 mt-2" width="100%" height="100%" src='https://regie.myn2a.online/www/delivery/avw.php?zoneid=1&amp;cb=INSERT_RANDOM_NUMBER_HERE&amp;n=a05aa9bf' border='0' alt='' /></a>
+                </div>
+            </div>
+        </div>
         {% if app.user %}
             {% if isAdmin %}
                 <a class="btn btn-primary btn-lg" href="{{ path('admin') }}" role="button">Interface administrateur</a>    

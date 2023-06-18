@@ -142,7 +142,7 @@ class EntrepriseController extends AbstractController
 
 
 
-        return $this->render('pages/index.html.twig', [
+        return $this->render('pages/entreprise/index.html.twig', [
             'factCount' => $factCount,
             'BonCount' => $BonCount,
             'ProCount' => $ProCount,
@@ -158,6 +158,13 @@ class EntrepriseController extends AbstractController
             'CaisseCount' => $CaisseCount,
             'BanqueCount' => $BanqueCount
         ]);
+    }
+
+
+     #[Route('/profile', name: 'profile')]
+    public function profile(): Response
+    {
+        return $this->render('pages/entreprise/profile.html.twig');
     }
 
 

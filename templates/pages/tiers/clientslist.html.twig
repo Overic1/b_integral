@@ -236,7 +236,7 @@
 
 		<div class="main">
 		{# ============ debut contenu =============#}
-			<nav class="navbar navbar-expand navbar-light navbar-bg"  style="height: 4%;">
+			<nav class="navbar navbar-expand navbar-light navbar-bg"  >
 				<a class="sidebar-toggle js-sidebar-toggle">
 					<i class="hamburger align-self-center"></i>
 				</a>
@@ -400,7 +400,7 @@
 								<img src="{{ asset('uploads/' ~ app.user.logo) }}" class="avatar img-fluid rounded me-1"
 									alt="logo" /> <span class="text-dark">{{ app.user.nom }}</span>
 								{% else %}
-								<img src="{{ asset('images/default.jpg') }}" style="height: 30px; width: 30px;" class="avatar img-fluid rounded me-1"
+								<img src="{{ asset('images/default.jpg') }}"  class="avatar img-fluid rounded me-1"
 									alt="logo" /> <span class="text-dark">{{ app.user.nom }}</span>
 								{% endif %}
 							</a>

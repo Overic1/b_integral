@@ -62,6 +62,7 @@ class EntrepriseController extends AbstractController
             $factCount = count($jsonData);
         } else {
             $factCount = 0;
+            $factNonPaye = 0;
         }
         if ($statusCode2 === 200) {
             $jsonData = $responseBon->toArray();
